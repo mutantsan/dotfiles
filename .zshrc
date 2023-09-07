@@ -95,6 +95,8 @@ gopro() {
     fi
 }
 
+complete -F _gopro_complete gopro
+
 eval "$(direnv hook zsh)"
 
 
