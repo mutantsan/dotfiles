@@ -99,7 +99,7 @@ complete -F _gopro_complete gopro
 
 eval "$(direnv hook zsh)"
 
-
+alias pypi='rm -rf dist && python -m build && cd dist && twine upload *'
 alias jb='ssh -i ~/.ssh/calexandr.pem calexandr@jumpbox.links.com.au'
 alias ajb='ssh -i ~/.ssh/calexandr.pem calexandr@aujumpbox.links.com.au'
 
