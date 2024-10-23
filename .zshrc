@@ -29,7 +29,7 @@ alias gd='git diff'
 alias gco='git checkout '
 alias gk='gitk --all&'
 alias gx='gitx --all'
-
+alias gpt='git push --tags'
 alias got='git '
 alias get='git '
 ## GIT ALIASES END
@@ -91,7 +91,8 @@ gopro() {
         fi
     else
         find "$proj_folder" -maxdepth 1 -type d -exec basename {} \; | grep -v '^projects$';
-        find "$drupal_folder" -maxdepth 1 -type d -exec basename {} \  | grep -v '^www$';
+        find "$drupal_folder" -maxdepth 1 -type d -exec basename {} \; | grep -v '^www$';
+
     fi
 }
 
@@ -100,9 +101,21 @@ complete -F _gopro_complete gopro
 eval "$(direnv hook zsh)"
 
 alias pypi='rm -rf dist && python -m build && cd dist && twine upload *'
+
 alias jb='ssh -i ~/.ssh/calexandr.pem calexandr@jumpbox.links.com.au'
 alias ajb='ssh -i ~/.ssh/calexandr.pem calexandr@aujumpbox.links.com.au'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# tempo autocomplete setup
+TEMPO_AC_ZSH_SETUP_PATH=/home/berry/.cache/tempomat/autocomplete/zsh_setup && test -f $TEMPO_AC_ZSH_SETUP_PATH && source $TEMPO_AC_ZSH_SETUP_PATH;alias tl='tempo l'
+alias tls='tempo ls'
+alias td='tempo d'
+alias tlst='tls $(date -d "4 days ago" +%Y-%m-%d)'
+alias tlsy='tls $(date -d "1 days ago" +%Y-%m-%d) -v'
+
+alias cdate='date +%Y-%m-%d'
