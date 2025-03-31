@@ -1,26 +1,49 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export ZSH="$HOME/.oh-my-zsh"
+export EDITOR='vim'
+export GPG_TTY=$(tty)
+export ZSH_THEME="powerlevel10k/powerlevel10k"
+export DISABLE_MAGIC_FUNCTIONS=true
 
-ZSH_THEME="robbyrussell"
-
-plugins=( fzf zsh-autosuggestions history zsh-syntax-highlighting nvm git)
-DISABLE_MAGIC_FUNCTIONS=true
+plugins=(fzf zsh-autosuggestions history zsh-syntax-highlighting nvm git)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-export EDITOR='vim'
-
-## PYENV
+######## PYENV #################################################################
 export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 eval "$(pyenv init -)"
-## PYENV END
+######## PYENV END ############################################################
 
+######## ALIASES ##############################################################
+alias jb='ssh -i ~/.ssh/calexandr.pem calexandr@jumpbox.links.com.au'
+alias ajb='ssh -i ~/.ssh/calexandr.pem calexandr@aujumpbox.links.com.au'
+alias sysadd='ckan user add calexandr password="Strongpass123#" email=calexandr@gmail.com && ckan user setpass calexandr -p calexandr && ckan sysadmin add calexandr'
+alias jproxy='sudo ssh -i ~/.ssh/calexandr.pem -Cq -D 2001 -N calexandr@aujumpbox.links.com.au'
+alias cdate='date +%Y-%m-%d'
+alias explorer="explorer.exe ."
+alias ls='lsd'
+alias l='ls'
+alias ll='ls'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
 
-## GIT ALIASES
+# tempomat aliases
+alias tls='tempo ls'
+alias td='tempo d'
+alias tlst='tls $(date -d "4 days ago" +%Y-%m-%d)'
+alias tlsy='tls $(date -d "1 days ago" +%Y-%m-%d) -v'
+
+# git aliases
 alias gs='git status '
 alias ga='git add '
 alias gb='git branch -vvv'
@@ -32,8 +55,9 @@ alias gx='gitx --all'
 alias gpt='git push --tags'
 alias got='git '
 alias get='git '
-## GIT ALIASES END
+######## ALIASES END ##########################################################
 
+######## Create CKAN project ##################################################
 tplckan () {
     if [ -n "$1" ]
     then
@@ -58,7 +82,9 @@ tplckan () {
 
     direnv allow
 }
+######## Create CKAN project END ##############################################
 
+######## Go to project ########################################################
 _gopro_complete() {
     local proj_folder="/home/berry/projects"
     local drupal_folder="/var/www"
@@ -97,25 +123,34 @@ gopro() {
 }
 
 complete -F _gopro_complete gopro
+######## Go to project END ####################################################
+
+######### EXA #################################################################
+
+alias exa="exa -l"
+
+etree() {
+  local extra_exclude="$*"
+  local pattern="__pycache__|pyc"  # Always exclude __pycache__ and .pyc files
+  if [[ -n "$extra_exclude" ]]; then
+    pattern+="|$(echo "$extra_exclude" | sed 's/ /|/g')"
+  fi
+  exa --tree | grep -vE "($pattern)"
+}
+###############################################################################
 
 eval "$(direnv hook zsh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-alias pypi='rm -rf dist && python -m build && cd dist && twine upload *'
-
-alias jb='ssh -i ~/.ssh/calexandr.pem calexandr@jumpbox.links.com.au'
-alias ajb='ssh -i ~/.ssh/calexandr.pem calexandr@aujumpbox.links.com.au'
-
+######## NVM ##################################################################
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+######## NVM END ##############################################################
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# tempo autocomplete setup
+######## TEMPOMAT #############################################################
 TEMPO_AC_ZSH_SETUP_PATH=/home/berry/.cache/tempomat/autocomplete/zsh_setup && test -f $TEMPO_AC_ZSH_SETUP_PATH && source $TEMPO_AC_ZSH_SETUP_PATH;alias tl='tempo l'
-alias tls='tempo ls'
-alias td='tempo d'
-alias tlst='tls $(date -d "4 days ago" +%Y-%m-%d)'
-alias tlsy='tls $(date -d "1 days ago" +%Y-%m-%d) -v'
+######## TEMPOMAT END #########################################################
 
-alias cdate='date +%Y-%m-%d'
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
