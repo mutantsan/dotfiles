@@ -45,9 +45,12 @@ initckan() {
 
     # creating .envrc for direnv
     echo "layout pyenv $python_version" >.envrc
+    echo 'export NODE_VERSIONS="$HOME/.nvm/versions/node"' >>.envrc
+    echo 'export NODE_VERSION_PREFIX=v' >>.envrc
     echo 'export CKAN_INI=$PWD/config/ckan.ini' >>.envrc
     echo 'export SETUPTOOLS_ENABLE_FEATURES="legacy-editable"' >>.envrc
     echo 'export PYTHONBREAKPOINT="ipdb.set_trace"' >>.envrc
+    echo "use node 22" >>.envrc
     echo "unset PS1" >>.envrc
 
     echo "✅ CKAN project '$project_name' initialized with Python $python_version\n"
