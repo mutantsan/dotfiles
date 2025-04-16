@@ -33,4 +33,5 @@ alias gx='gitx --all'
 alias gpt='git push --tags'
 alias got='git '
 alias get='git '
+alias gurl='git config --get remote.origin.url | sed "s|git@github.com:|https://github.com/|" | sed "s/\.git//"'
 ######## ALIASES END ##########################################################

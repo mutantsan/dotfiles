@@ -18,6 +18,8 @@ initckan() {
     if ! pyenv versions --bare | grep -Fxq "$python_version"; then
         echo "\n❌ Python $python_version is not installed in pyenv."
         echo "Run: 'pyenv install $python_version' or change the version."
+        echo "Available versions:"
+        pyenv versions
         return 1
     fi
 
