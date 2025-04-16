@@ -1,7 +1,7 @@
 _gopro_complete() {
-    local proj_folder="/home/berry/projects"
+    local proj_folder="$HOME/projects"
     local drupal_folder="/var/www"
-    local myproj_folder="/home/berry/my_proj"
+    local myproj_folder="$HOME/my_proj"
 
     local current_word="${COMP_WORDS[COMP_CWORD]}"
     local projects=""
@@ -24,9 +24,9 @@ _gopro_complete() {
 }
 
 gopro() {
-    local proj_folder="/home/berry/projects"
+    local proj_folder="$HOME/projects"
     local drupal_folder="/var/www"
-    local myproj_folder="/home/berry/my_proj"
+    local myproj_folder="$HOME/my_proj"
 
     if [ -n "$1" ]; then
         if [ -d "$proj_folder/$1" ]; then
