@@ -3,6 +3,7 @@ alias jb='ssh -i ~/.ssh/calexandr.pem calexandr@jumpbox.links.com.au'
 alias ajb='ssh -i ~/.ssh/calexandr.pem calexandr@aujumpbox.links.com.au'
 alias sysadd='ckan user add calexandr password="Strongpass123#" email=calexandr@gmail.com && ckan user setpass calexandr -p calexandr && ckan sysadmin add calexandr'
 alias jproxy='sudo ssh -i ~/.ssh/calexandr.pem -Cq -D 2001 -N calexandr@aujumpbox.links.com.au'
+alias ppub="rm -rf dist && python -m build && cd dist && twine upload * && cd .."
 alias cdate='date +%Y-%m-%d'
 alias explorer="explorer.exe ."
 alias ols='/usr/bin/ls -l'
