@@ -14,8 +14,14 @@ export PATH=$GOPATH/bin:$PATH # GO
 export PIPENV_PYTHON="$PYENV_ROOT/shims/python" # pyenv
 export PYENV_ROOT="$HOME/.pyenv" # pyenv
 export PATH="$PYENV_ROOT/bin:$PATH" # pyenv
+export PATH="$PATH:/home/berry/.local/bin" # pipx
 export MY_CONF_DIR="$HOME/myconf"
+export PLAYDATE_SDK_PATH="$HOME/.playdate-sdk"
 export GPG_TTY=$TTY
+export PATH="$HOME/.atuin/bin:$PATH" # atuin
+export FZF_CTRL_T_COMMAND='fdfind --type f --hidden --follow --exclude .git' # search by hidden files with CTRL+T
+export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
+export ATUIN_THEME_DIR="$ATUIN_CONFIG_DIR/themes"
 
 plugins=(fzf zsh-autosuggestions history zsh-syntax-highlighting nvm git)
 
@@ -27,6 +33,7 @@ source ~/myconf/aliases.zsh
 eval "$(pyenv init -)" # Initialize pyenv
 eval "$(direnv hook zsh)" # Initialize direnv
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(atuin init zsh)" # Initialize atuin
 
 ######## NVM ##################################################################
 export NVM_DIR="$HOME/.nvm"
