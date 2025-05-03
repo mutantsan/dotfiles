@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export ZSH="$HOME/.oh-my-zsh"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5ab8c8,bg=ffffff,bold,underline"
 export EDITOR='vim'
 export DISABLE_MAGIC_FUNCTIONS=true
 export ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -23,7 +24,7 @@ export FZF_CTRL_T_COMMAND='fdfind --type f --hidden --follow --exclude .git' # s
 export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
 export ATUIN_THEME_DIR="$ATUIN_CONFIG_DIR/themes"
 
-plugins=(fzf zsh-autosuggestions history zsh-syntax-highlighting nvm git)
+plugins=(fzf fzf-tab zsh-autosuggestions history zsh-syntax-highlighting nvm git)
 
 source $ZSH/oh-my-zsh.sh
 source ~/myconf/initckan.zsh
