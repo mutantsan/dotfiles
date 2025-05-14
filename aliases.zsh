@@ -38,4 +38,5 @@ alias gpt='git push --tags'
 alias got='git '
 alias get='git '
 alias gurl='git config --get remote.origin.url | sed "s|git@github.com:|https://github.com/|" | sed "s/\.git//"'
+alias gtag='ver=$(grep "^version" pyproject.toml | cut -d "\"" -f2) && git tag -a "v$ver" -m "Release v$ver"'
 ######## ALIASES END ##########################################################

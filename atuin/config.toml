@@ -2,7 +2,7 @@
 history_filter = [
   "^cd",
   "^ls",
-  "^ll"
+  "^ll",
 ]
 
 ## possible values: prefix, fulltext, fuzzy, skim
@@ -12,7 +12,7 @@ search_mode = "fuzzy"
 style = "full"
 
 [theme]
-name = "catppuccin-mocha-mauve"
+name = "mytheme"
 
 [search]
 filters = [ "global", "session", "workspace", "directory" ]

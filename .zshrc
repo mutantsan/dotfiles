@@ -20,7 +20,10 @@ export MY_CONF_DIR="$HOME/myconf"
 export PLAYDATE_SDK_PATH="$HOME/.playdate-sdk"
 export GPG_TTY=$TTY
 export PATH="$HOME/.atuin/bin:$PATH" # atuin
-export FZF_CTRL_T_COMMAND='fdfind --type f --hidden --follow --exclude .git' # search by hidden files with CTRL+T
+# export FZF_CTRL_T_COMMAND='fdfind --type f --hidden --follow --exclude .git' # search by hidden files with CTRL+T
+export FZF_DEFAULT_COMMAND="fdfind . $HOME"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --hidden --follow --exclude .git"
+export FZF_ALT_C_COMMAND="fdfind -t d . $HOME"
 export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
 export ATUIN_THEME_DIR="$ATUIN_CONFIG_DIR/themes"
 
