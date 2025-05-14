@@ -1,0 +1,189 @@
+{
+    // -------------------------------
+    // Python Configuration
+    // -------------------------------
+    "python.analysis.logLevel": "Trace",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.extraPaths": [
+        "./ckan"
+    ],
+
+    // -------------------------------
+    // Language-specific Formatters & Settings
+    // -------------------------------
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[php]": {
+        "files.trimFinalNewlines": false,
+        "files.trimTrailingWhitespace": false
+    },
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[less]": {
+        "editor.formatOnSave": false,
+        "files.trimFinalNewlines": false,
+        "files.trimTrailingWhitespace": false,
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
+    },
+    "[markdown]": {
+        "editor.formatOnSave": false,
+        "files.trimFinalNewlines": false,
+        "files.trimTrailingWhitespace": false
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+
+    // -------------------------------
+    // File Handling
+    // -------------------------------
+    "files.associations": {
+        "*.html": "html",
+        "*.twig": "html",
+        "*.module": "php"
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/*.pyc": true,
+        "**/__pycache__": true,
+        "**/*.egg-info": true,
+        ".direnv/": true,
+        "**/node_modules/": true,
+        "**/.ruff_cache": true,
+        "**/.pytest_cache": true
+    },
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+
+    // -------------------------------
+    // Search Configuration
+    // -------------------------------
+    "search.useIgnoreFiles": false,
+    "search.exclude": {
+        "**/vendor/{[^l],?[^ai]}*": true,
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/_ide_helper.php": true,
+        "**/composer.lock": true,
+        "**/package-lock.json": true,
+        "storage": true,
+        ".phpunit.result.cache": true
+    },
+
+    // -------------------------------
+    // Emmet & HTML/Twig Support
+    // -------------------------------
+    "emmet.includeLanguages": {
+        "twig": "html"
+    },
+
+    // -------------------------------
+    // UI and Workbench Settings
+    // -------------------------------
+    "workbench.colorTheme": "Quiet Light",
+    "workbench.editor.enablePreview": false,
+    "workbench.activityBar.location": "hidden",
+    "workbench.editor.showTabs": "multiple",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editorAssociations": {
+        "*.sqlite": "sqlite3-editor.editor"
+    },
+    "workbench.tree.enableStickyScroll": true,
+    "workbench.tree.renderIndentGuides": "onHover",
+    "workbench.tree.indent": 16,
+    "workbench.sideBar.location": "right",
+    "breadcrumbs.enabled": true,
+    "material-icon-theme.hidesExplorerArrows": true,
+    "custom-ui-style.stylesheet": {
+        ".quick-input-widget": "top: 25vh !important; box-shadow: unset !important; border-width: 2px !important; border-color: #d3d3d3 !important;", // center the command palette and modify look
+        ".quick-input-list .scrollbar": "display: none", // hide scroll bar inside the command palette
+        ".editor-widget.find-widget": "border: 1px solid #d3d3d3; border-top: unset; box-shadow: unset",
+        ".notification-toast": "box-shadow: none !important", // remove box-shadow from notification toast
+        ".editor-actions": "display: none" // hides the editr actions (split, settings etc)
+    },
+    // -------------------------------
+    // Editor Settings
+    // -------------------------------
+    "editor.copyWithSyntaxHighlighting": false,
+    "editor.snippetSuggestions": "top",
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": false,
+    "editor.rulers": [79, 120],
+    "editor.minimap.enabled": false,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "editor.lineHeight": 1.4,
+    "editor.largeFileOptimizations": false,
+    "editor.inlayHints.enabled": "on",
+    "editor.inlayHints.fontSize": 12,
+    "editor.inlayHints.padding": true,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.cursorBlinking": "solid",
+    "editor.codeLens": true, // enable incode actions
+    "editor.lightbulb.enabled": "off", // disable light bulb with suggestions
+
+    // -------------------------------
+    // Explorer Settings
+    // -------------------------------
+    "explorer.compactFolders": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    // -------------------------------
+    // Window Behavior
+    // -------------------------------
+    "window.newWindowDimensions": "inherit",
+    "window.zoomLevel": 3,
+    "window.customTitleBarVisibility": "never",
+    "window.titleBarStyle": "native",
+    "window.menuBarVisibility": "toggle",
+
+    // -------------------------------
+    // Git and Extensions
+    // -------------------------------
+    "gitlens.defaultGravatarsStyle": "retro",
+    "git.openRepositoryInParentFolders": "never",
+
+    // -------------------------------
+    // Rust Analyzer Enhancements
+    // -------------------------------
+    "rust-analyzer.inlayHints.bindingModeHints.enable": true,
+    "rust-analyzer.inlayHints.closureCaptureHints.enable": true,
+
+    // -------------------------------
+    // Miscellaneous
+    // -------------------------------
+    "security.workspace.trust.untrustedFiles": "open",
+    "remote.autoForwardPortsSource": "hybrid",
+    "errorLens.enabledDiagnosticLevels": [
+        "warning",
+        "info"
+    ],
+    "cursor.cpp.disabledLanguages": [
+        "plaintext"
+    ],
+    "sqlite3-editor.ui.minimizePanel": true,
+    "redhat.telemetry.enabled": false
+}
