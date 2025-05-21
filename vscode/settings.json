@@ -1,23 +1,136 @@
 {
     // -------------------------------
-    // Python Configuration
+    // Update defaults
     // -------------------------------
-    "python.analysis.logLevel": "Trace",
-    "python.analysis.autoImportCompletions": true,
-    "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.extraPaths": [
-        "./ckan"
-    ],
+    "editor.copyWithSyntaxHighlighting": false, // do not copy the syntax hl
+    "diffEditor.ignoreTrimWhitespace": false, // do not ignore white spaces
+    "editor.emptySelectionClipboard": true, // cut/copy line if my cursor is on it
+    "workbench.editor.enablePreview": false, // disable preview mode
+    "window.newWindowDimensions": "inherit", // inherit the previous window size/position
+    "files.trimTrailingWhitespace": true, // trim trailing whitespace on file save
+    "files.insertFinalNewline": true, // insert a final new line at the end of the file when saving it
+    "files.trimFinalNewlines": true, // trim extra new lines after the final one
+    "editor.snippetSuggestions": "top", // show snippet suggestions on top of other suggestions
+    "editor.detectIndentation": false, // do not automatically detected indentation on file open
 
     // -------------------------------
-    // Language-specific Formatters & Settings
+    // Hide unused UI elemenets
+    // -------------------------------
+    "editor.minimap.enabled": false, // disable the code minimap
+    "workbench.tree.renderIndentGuides": "none", // Render tree indent guides on hover
+    "editor.guides.indentation": false, // Don't render indent guides
+    "workbench.editor.showTabs": "none", // The editor title area is not displayed
+    "breadcrumbs.enabled": false, // hide the activity bar
+    "workbench.activityBar.orientation": "vertical", // Controls the visibility of the status bar a`t the bottom of the workbench.
+    "workbench.activityBar.location": "hidden", // Hide the Activity Bar
+    "editor.lineNumbers": "off",
+
+    // -------------------------------
+    // Reduce Noise
+    // -------------------------------
+    // "editor.codeLens": false, // Don't show CodeLens
+    "scm.diffDecorations": "all", // Show the diff decorations only in the editor gutter.
+    "editor.hover.delay": 300, // Controls the delay in milliseconds after which the hover is shown
+    "editor.matchBrackets": "never", // Don't highlight matching brackets
+    "workbench.tips.enabled": false, // Disable the watermark tips when no editor is open
+    "editor.colorDecorators": false, // Don't render the inline color decorators and color picker
+    "git.decorations.enabled": false, // Controls whether Git contributes colors and badges to the Explorer and the Open Editors view
+    "editor.lightbulb.enabled": "onCode", // Show the code action menu when the cursor is on lines with code
+    "editor.selectionHighlight": false, // Do not highlight matches similar to the selection
+    "editor.overviewRulerBorder": false, // Controls whether a border should be drawn around the overview ruler
+    "editor.renderLineHighlight": "none", // Don't highlight current line
+    "editor.occurrencesHighlight": "off", // Don't highlight occurrences (we can use Ctrl+F)
+    "editor.renderControlCharacters": false, // Controls whether the editor should render control characters
+    "editor.hideCursorInOverviewRuler": true, // Hide cursor position indicator on the scrollbar area
+    "problems.decorations.enabled": true, // Show Errors & Warnings on files and folder
+    "workbench.editor.enablePreviewFromQuickOpen": false, // Controls whether editors opened from Quick Open show as preview editors
+    // Controls the behavior the 'Go to Type Definition'-command when multiple target locations exist.
+    "editor.gotoLocation.multipleDefinitions": "goto",
+    "editor.gotoLocation.multipleImplementations": "goto",
+    "editor.gotoLocation.multipleReferences": "goto",
+    "editor.gotoLocation.multipleDeclarations": "goto",
+    "editor.gotoLocation.multipleTypeDefinitions": "goto",
+
+    // -------------------------------
+    // UI apperance
+    // -------------------------------
+    "workbench.colorTheme": "Quiet Light", // Change theme
+    "workbench.iconTheme": "catppuccin-mocha", // Specifies the file icon theme
+    "editor.fontFamily": "MonoLisa, monospace", // Controls the font family
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootNameShort}", // Change title content
+    "workbench.tree.indent": 16, // Controls tree indentation in pixels
+    "workbench.sideBar.location": "right", // move sidebar to the right side
+    "editor.fontLigatures": true, // Enables font ligatures
+    "editor.fontSize": 15, // Controls the font size in pixels
+    "editor.lineHeight": 1.6, // Controls the line height
+    "terminal.integrated.fontSize": 15, // Controls the font size in pixels of the terminal.
+    "terminal.integrated.lineHeight": 1.5, // Controls the line height of the terminal
+    "editor.unicodeHighlight.ambiguousCharacters": true, // Highlight non-ASCII characters
+    "editor.cursorBlinking": "solid", // Control the cursor animation style
+    "window.zoomLevel": 1, // Adjust the default zoom level for all windows 1 is 120%
+    "custom-ui-style.stylesheet": {
+        "*": "font-family: MonoLisa, monospace; font-size: 16px;",
+        ".quick-input-widget": "width: 80% !important; max-width: 1000px !important; left: 50% !important; transform: translate(-50%, 0) !important; margin-left: unset !important; top: 25vh !important; box-shadow: unset !important; border-width: 2px !important; border-color: #d3d3d3 !important;", // center the command palette and modify look
+        ".quick-input-list .scrollbar": "display: none", // hide scroll bar inside the command palette
+        ".editor-widget.find-widget": "border: 1px solid #d3d3d3; border-top: unset; box-shadow: unset",
+        ".notification-toast": "box-shadow: none !important", // remove box-shadow from notification toast
+        ".editor-actions": "display: none" // hides the editr actions (split, settings etc)
+    },
+
+    // -------------------------------
+    // Editor Settings
+    // -------------------------------
+    "editor.largeFileOptimizations": false, // Special handling for large files to disable certain memory intensive features
+
+    // -------------------------------
+    // Explorer Settings
+    // -------------------------------
+    "explorer.compactFolders": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    // -------------------------------
+    // Search Settings
+    // -------------------------------
+    "search.useIgnoreFiles": false, // Controls whether to use .gitignore and .ignore files when searching for files
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/*.pyc": true,
+        "**/__pycache__": true,
+        "**/*.egg-info": true,
+        "**/.direnv/": true,
+        "**/node_modules/": true,
+        "**/.ruff_cache": true,
+        "**/.pytest_cache": true
+    },
+
+    // -------------------------------
+    // File Handling
+    // -------------------------------
+    "files.associations": {
+        "*.html": "html",
+        "*.twig": "html",
+        "*.module": "php"
+    },
+
+    // -------------------------------
+    // Python Configuration
+    // -------------------------------
+    "python.analysis.logLevel": "Information", // Specifies the level of logging for the Output panel
+    "python.analysis.autoImportCompletions": true, // Offer auto-import completions
+    "python.analysis.typeCheckingMode": "basic", // Defines the default rule set for type checking
+    "python.analysis.extraPaths": ["./ckan"], // Additional import search resolution paths
+
+    // -------------------------------
+    // Language-specific Settings
     // -------------------------------
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
-    },
-    "[php]": {
-        "files.trimFinalNewlines": false,
-        "files.trimTrailingWhitespace": false
     },
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust-analyzer"
@@ -29,19 +142,10 @@
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "[less]": {
-        "editor.formatOnSave": false,
-        "files.trimFinalNewlines": false,
-        "files.trimTrailingWhitespace": false,
         "editor.defaultFormatter": "vscode.css-language-features"
     },
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnType": true
-    },
-    "[markdown]": {
-        "editor.formatOnSave": false,
-        "files.trimFinalNewlines": false,
-        "files.trimTrailingWhitespace": false
     },
     "[scss]": {
         "editor.defaultFormatter": "vscode.css-language-features"
@@ -49,141 +153,9 @@
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
-
-    // -------------------------------
-    // File Handling
-    // -------------------------------
-    "files.associations": {
-        "*.html": "html",
-        "*.twig": "html",
-        "*.module": "php"
-    },
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        "**/*.pyc": true,
-        "**/__pycache__": true,
-        "**/*.egg-info": true,
-        ".direnv/": true,
-        "**/node_modules/": true,
-        "**/.ruff_cache": true,
-        "**/.pytest_cache": true
-    },
-    "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true,
-
-    // -------------------------------
-    // Search Configuration
-    // -------------------------------
-    "search.useIgnoreFiles": false,
-    "search.exclude": {
-        "**/vendor/{[^l],?[^ai]}*": true,
-        "**/node_modules": true,
-        "**/dist": true,
-        "**/_ide_helper.php": true,
-        "**/composer.lock": true,
-        "**/package-lock.json": true,
-        "storage": true,
-        ".phpunit.result.cache": true
-    },
-
-    // -------------------------------
-    // Emmet & HTML/Twig Support
-    // -------------------------------
-    "emmet.includeLanguages": {
-        "twig": "html"
-    },
-
-    // -------------------------------
-    // UI and Workbench Settings
-    // -------------------------------
-    "workbench.colorTheme": "Quiet Light",
-    "workbench.editor.enablePreview": false,
-    "workbench.activityBar.location": "hidden",
-    "workbench.editor.showTabs": "multiple",
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.editorAssociations": {
-        "*.sqlite": "sqlite3-editor.editor"
-    },
-    "workbench.tree.enableStickyScroll": true,
-    "workbench.tree.renderIndentGuides": "onHover",
-    "workbench.tree.indent": 16,
-    "workbench.sideBar.location": "right",
-    "breadcrumbs.enabled": true,
-    "material-icon-theme.hidesExplorerArrows": true,
-    "custom-ui-style.stylesheet": {
-        ".quick-input-widget": "top: 25vh !important; box-shadow: unset !important; border-width: 2px !important; border-color: #d3d3d3 !important;", // center the command palette and modify look
-        ".quick-input-list .scrollbar": "display: none", // hide scroll bar inside the command palette
-        ".editor-widget.find-widget": "border: 1px solid #d3d3d3; border-top: unset; box-shadow: unset",
-        ".notification-toast": "box-shadow: none !important", // remove box-shadow from notification toast
-        ".editor-actions": "display: none" // hides the editr actions (split, settings etc)
-    },
-    // -------------------------------
-    // Editor Settings
-    // -------------------------------
-    "editor.copyWithSyntaxHighlighting": false,
-    "editor.snippetSuggestions": "top",
-    "editor.detectIndentation": false,
-    "editor.formatOnSave": false,
-    "editor.rulers": [79, 120],
-    "editor.minimap.enabled": false,
-    "editor.fontFamily": "Fira Code",
-    "editor.fontLigatures": true,
-    "editor.fontSize": 14,
-    "editor.lineHeight": 1.4,
-    "editor.largeFileOptimizations": false,
-    "editor.inlayHints.enabled": "on",
-    "editor.inlayHints.fontSize": 12,
-    "editor.inlayHints.padding": true,
-    "editor.unicodeHighlight.ambiguousCharacters": false,
-    "editor.cursorBlinking": "solid",
-    "editor.codeLens": true, // enable incode actions
-    "editor.lightbulb.enabled": "off", // disable light bulb with suggestions
-
-    // -------------------------------
-    // Explorer Settings
-    // -------------------------------
-    "explorer.compactFolders": false,
-    "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrop": false,
-
-    // -------------------------------
-    // Window Behavior
-    // -------------------------------
-    "window.newWindowDimensions": "inherit",
-    "window.zoomLevel": 3,
-    "window.customTitleBarVisibility": "never",
-    "window.titleBarStyle": "native",
-    "window.menuBarVisibility": "toggle",
-
-    // -------------------------------
-    // Git and Extensions
-    // -------------------------------
-    "gitlens.defaultGravatarsStyle": "retro",
+    "window.menuBarVisibility": "compact",
     "git.openRepositoryInParentFolders": "never",
-
-    // -------------------------------
-    // Rust Analyzer Enhancements
-    // -------------------------------
-    "rust-analyzer.inlayHints.bindingModeHints.enable": true,
-    "rust-analyzer.inlayHints.closureCaptureHints.enable": true,
-
-    // -------------------------------
-    // Miscellaneous
-    // -------------------------------
-    "security.workspace.trust.untrustedFiles": "open",
-    "remote.autoForwardPortsSource": "hybrid",
-    "errorLens.enabledDiagnosticLevels": [
-        "warning",
-        "info"
-    ],
     "cursor.cpp.disabledLanguages": [
         "plaintext"
-    ],
-    "sqlite3-editor.ui.minimizePanel": true,
-    "redhat.telemetry.enabled": false
+    ]
 }
