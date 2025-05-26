@@ -6,7 +6,6 @@
     "diffEditor.ignoreTrimWhitespace": false, // do not ignore white spaces
     "editor.emptySelectionClipboard": true, // cut/copy line if my cursor is on it
     "workbench.editor.enablePreview": false, // disable preview mode
-    "window.newWindowDimensions": "inherit", // inherit the previous window size/position
     "files.trimTrailingWhitespace": true, // trim trailing whitespace on file save
     "files.insertFinalNewline": true, // insert a final new line at the end of the file when saving it
     "files.trimFinalNewlines": true, // trim extra new lines after the final one
@@ -23,7 +22,7 @@
     "breadcrumbs.enabled": false, // hide the activity bar
     "workbench.activityBar.orientation": "vertical", // Controls the visibility of the status bar a`t the bottom of the workbench.
     "workbench.activityBar.location": "hidden", // Hide the Activity Bar
-    "editor.lineNumbers": "off",
+    "editor.lineNumbers": "off", // Controls the visibility of the status bar at the bottom of the workbench
 
     // -------------------------------
     // Reduce Noise
@@ -56,18 +55,10 @@
     // -------------------------------
     "workbench.colorTheme": "Quiet Light", // Change theme
     "workbench.iconTheme": "catppuccin-mocha", // Specifies the file icon theme
-    "editor.fontFamily": "MonoLisa, monospace", // Controls the font family
-    "window.title": "${dirty}${activeEditorMedium}${separator}${rootNameShort}", // Change title content
     "workbench.tree.indent": 16, // Controls tree indentation in pixels
     "workbench.sideBar.location": "right", // move sidebar to the right side
-    "editor.fontLigatures": true, // Enables font ligatures
-    "editor.fontSize": 15, // Controls the font size in pixels
-    "editor.lineHeight": 1.6, // Controls the line height
     "terminal.integrated.fontSize": 15, // Controls the font size in pixels of the terminal.
     "terminal.integrated.lineHeight": 1.5, // Controls the line height of the terminal
-    "editor.unicodeHighlight.ambiguousCharacters": true, // Highlight non-ASCII characters
-    "editor.cursorBlinking": "solid", // Control the cursor animation style
-    "window.zoomLevel": 1, // Adjust the default zoom level for all windows 1 is 120%
     "custom-ui-style.stylesheet": {
         "*": "font-family: MonoLisa, monospace; font-size: 16px;",
         ".quick-input-widget": "width: 80% !important; max-width: 1000px !important; left: 50% !important; transform: translate(-50%, 0) !important; margin-left: unset !important; top: 25vh !important; box-shadow: unset !important; border-width: 2px !important; border-color: #d3d3d3 !important;", // center the command palette and modify look
@@ -78,9 +69,23 @@
     },
 
     // -------------------------------
+    // Window Settings
+    // -------------------------------
+    "window.zoomLevel": 3, // Adjust the default zoom level for all windows 3 is 160%
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootNameShort}", // Change title content
+    "window.newWindowDimensions": "inherit", // inherit the previous window size/position
+    "window.menuBarVisibility": "compact",
+
+    // -------------------------------
     // Editor Settings
     // -------------------------------
     "editor.largeFileOptimizations": false, // Special handling for large files to disable certain memory intensive features
+    "editor.unicodeHighlight.ambiguousCharacters": true, // Highlight non-ASCII characters
+    "editor.cursorBlinking": "solid", // Control the cursor animation style
+    "editor.fontLigatures": true, // Enables font ligatures
+    "editor.fontSize": 15, // Controls the font size in pixels
+    "editor.lineHeight": 1.6, // Controls the line height
+    "editor.fontFamily": "MonoLisa, monospace", // Controls the font family
 
     // -------------------------------
     // Explorer Settings
@@ -145,7 +150,7 @@
         "editor.defaultFormatter": "vscode.css-language-features"
     },
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "ms-python.black-formatter",
     },
     "[scss]": {
         "editor.defaultFormatter": "vscode.css-language-features"
@@ -153,9 +158,11 @@
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
-    "window.menuBarVisibility": "compact",
+
+    // -------------------------------
+    // Other, the new config options will fall down there
+    // -------------------------------
     "git.openRepositoryInParentFolders": "never",
-    "cursor.cpp.disabledLanguages": [
-        "plaintext"
-    ]
+    "cursor.cpp.disabledLanguages": [],
+    "workbench.statusBar.visible": false
 }

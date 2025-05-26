@@ -1,0 +1,138 @@
+[
+    {
+        "key": "ctrl+alt+backspace",
+        "command": "deleteWordPartLeft",
+    },
+    {
+        "key": "alt+f",
+        "command": "workbench.action.quickTextSearch",
+    },
+
+    // -------------------------------
+    // Toggles
+    // -------------------------------
+    {
+        "key": "alt+k alt+k", // toggle font-size from big to small
+        "command": "toggle",
+        "when": "editorTextFocus",
+        "args": {
+            "id": "fontSize",
+            "value": [
+                {
+                    "editor.fontSize": 15, // Controls the font size in pixels
+                    "editor.lineHeight": 1.6, // Controls the line height
+                },
+                {
+                    "editor.fontSize": 12,
+                    "editor.lineHeight": 0,
+                }
+            ]
+        }
+    },
+
+    // -------------------------------
+    // File Explorer
+    // -------------------------------
+    {
+        "key": "alt+n",
+        "command": "explorer.newFile",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    {
+        "key": "alt+shift+n",
+        "command": "explorer.newFolder",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+    {
+        "key": "alt+r",
+        "command": "workbench.files.action.refreshFilesExplorer",
+        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+    },
+
+    // -------------------------------
+    // Fold & Unfold
+    // -------------------------------
+    {
+        "key": "shift+alt+[",
+        "command": "editor.fold",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+]",
+        "command": "editor.unfold",
+        "when": "editorFocus"
+    },
+
+    // -------------------------------
+    // Split Panels
+    // -------------------------------
+    {
+        "key": "shift+alt+-",
+        "command": "workbench.action.joinAllGroups",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+=",
+        "command": "workbench.action.splitEditor",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+right",
+        "command": "workbench.action.navigateRight",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+left",
+        "command": "workbench.action.navigateLeft",
+        "when": "editorFocus"
+    },
+
+    // -------------------------------
+    // Open DevTools
+    // -------------------------------
+    {
+        "key": "alt+ctrl+i",
+        "command": "workbench.action.toggleDevTools"
+    },
+
+    // -------------------------------
+    // Hide Toaster Notifications
+    // -------------------------------
+    {
+        "key": "escape",
+        "command": "notifications.hideToasts",
+        "when": "notificationToastsVisible"
+    }
+
+    // -------------------------------
+    // Defaults
+    // -------------------------------
+    {
+        "key": "shift+ctrl+g",
+        "command": "workbench.view.scm"
+    },
+    {
+        "key": "shift+ctrl+e",
+        "command": "workbench.view.explorer"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "-workbench.action.quickTextSearch"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "dockerContainers.focus"
+    },
+    {
+        "key": "ctrl+shift+b",
+        "command": "workbench.view.debug"
+    },
+    {
+        "key": "ctrl+shift+x",
+        "command": "workbench.view.extensions"
+    },
+    {
+        "key": "ctrl+shift+p",
+        "command": "workbench.action.showCommands"
+    }
+]
