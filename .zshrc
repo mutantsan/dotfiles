@@ -26,12 +26,14 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --hidden --follow --exclude .git
 export FZF_ALT_C_COMMAND="fdfind -t d . $HOME"
 export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
 export ATUIN_THEME_DIR="$ATUIN_CONFIG_DIR/themes"
+export DIRENV_SKIP_TIMEOUT=1
 
 plugins=(fzf fzf-tab zsh-autosuggestions history zsh-syntax-highlighting nvm git)
 
 source $ZSH/oh-my-zsh.sh
 source ~/myconf/initckan.zsh
 source ~/myconf/gopro.zsh
+source ~/myconf/notes.zsh
 source ~/myconf/aliases.zsh
 
 eval "$(pyenv init -)" # Initialize pyenv
