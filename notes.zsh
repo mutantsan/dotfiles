@@ -1,10 +1,54 @@
+# -----------------------------------------------------------------------------
+# Notes Management Script
+#
+# This script provides a simple way to manage personal notes stored in
+# "$HOME/.notes". Notes are created in Markdown format and can be created,
+# searched, previewed, edited, or deleted from the terminal.
+#
+# Requirements:
+#   - rg (ripgrep) : fast search, https://github.com/BurntSushi/ripgrep
+#   - fzf          : fuzzy finder, https://github.com/junegunn/fzf
+#   - bat          : syntax highlighting preview, https://github.com/sharkdp/bat
+#   - nvim (or any editor you set), https://neovim.io/
+#
+# Note folder:
+#   By default, the notes are stored in "$HOME/.notes". You can change this by
+#   editing the NOTES_DIR variable below.
+#
+# Editor:
+#   By default, the script uses "nvim" as the editor. You can change this by
+#   editing the EDITOR variable below.:
+#       EDITOR=nvim
+#   Example alternatives:
+#       EDITOR=nano
+#       EDITOR=code
+#       EDITOR="${EDITOR:-nvim}"   # use system default
+#
+# Usage:
+#   n [filename]        - Create or edit a note.
+#                         If no filename is given, creates a timestamped file.
+#                         Example: n todo -> opens/creates "todo.md"
+#
+#   nf                  - Find a note.
+#
+#   nfe                 - Find and edit a note.
+#
+#   nd                  - Find and delete a note (with confirmation).
+#
+# Aliases:
+#   n   = note          (create/edit note)
+#   nf  = note find     (search + preview)
+#   nfe = note find -e  (search + edit)
+#   nd  = note delete   (search + delete)
+#
+# -----------------------------------------------------------------------------
+
 NOTES_DIR="$HOME/.notes"
+EDITOR=nvim
+
 mkdir -p "$NOTES_DIR"
 
 note() {
-    local editor=nvim
-    local preview=glow
-
     case "$1" in
         find)
             shift
@@ -25,9 +69,11 @@ note() {
 
             if [ -n "$selected_file" ]; then
                 if $edit_mode; then
-                    $editor "$selected_file"
+                    $EDITOR "$selected_file"
                 else
-                    $preview "$selected_file"
+                    echo "Previewing $selected_file"
+                    echo "\n"
+                    bat "$selected_file" --style=plain
                 fi
             fi
             ;;
@@ -63,7 +109,7 @@ note() {
                 fi
             fi
 
-            nvim "$NOTES_DIR/$filename"
+            $EDITOR "$NOTES_DIR/$filename"
             ;;
     esac
 }
