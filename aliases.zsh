@@ -21,9 +21,20 @@ alias vim='nvim'
 alias tl='tempie log'
 alias tls='tempie list'
 alias td='tempie delete'
-alias tlst='tempie list $(date -d "4 days ago" +%Y-%m-%d)'
-alias tlsy='tempie list $(date -d "1 days ago" +%Y-%m-%d)'
+
 alias tlr='tempie list-range'
+
+case "$(uname)" in
+  Darwin)
+    alias tlst='tempie list $(date -v-4d +%Y-%m-%d)'
+    alias tlsy='tempie list $(date -v-1d +%Y-%m-%d)'
+    ;;
+  Linux)
+    alias tlst='tempie list $(date -d "4 days ago" +%Y-%m-%d)'
+    alias tlsy='tempie list $(date -d "1 days ago" +%Y-%m-%d)'
+    ;;
+esac
+
 
 # git aliases
 alias gs='git status '
