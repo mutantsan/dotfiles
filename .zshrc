@@ -20,7 +20,6 @@ export MY_CONF_DIR="$HOME/myconf"
 export PLAYDATE_SDK_PATH="$HOME/.playdate-sdk"
 export GPG_TTY=$TTY
 export PATH="$HOME/.atuin/bin:$PATH" # atuin
-# export FZF_CTRL_T_COMMAND='fdfind --type f --hidden --follow --exclude .git' # search by hidden files with CTRL+T
 export FZF_DEFAULT_COMMAND="fdfind . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --hidden --follow --exclude .git"
 export FZF_ALT_C_COMMAND="fdfind -t d . $HOME"
@@ -35,6 +34,7 @@ source ~/myconf/initckan.zsh
 source ~/myconf/gopro.zsh
 source ~/myconf/notes.zsh
 source ~/myconf/aliases.zsh
+source ~/myconf/brew-switch.zsh
 
 eval "$(pyenv init -)" # Initialize pyenv
 eval "$(direnv hook zsh)" # Initialize direnv
