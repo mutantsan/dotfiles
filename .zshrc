@@ -30,16 +30,19 @@ export DIRENV_SKIP_TIMEOUT=1
 plugins=(fzf fzf-tab zsh-autosuggestions history zsh-syntax-highlighting nvm git)
 
 source $ZSH/oh-my-zsh.sh
-source ~/myconf/initckan.zsh
-source ~/myconf/gopro.zsh
-source ~/myconf/notes.zsh
-source ~/myconf/aliases.zsh
-source ~/myconf/brew-switch.zsh
+source ~/dotfiles/initckan.zsh
+source ~/dotfiles/gopro.zsh
+source ~/dotfiles/notes.zsh
+source ~/dotfiles/aliases.zsh
+source ~/dotfiles/brew-switch.zsh
 
 eval "$(pyenv init -)" # Initialize pyenv
 eval "$(direnv hook zsh)" # Initialize direnv
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(atuin init zsh)" # Initialize atuin
+
+if [ "$(uname)" = "Linux" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" # Initialize linuxbrew
+fi
 
 ######## NVM ##################################################################
 export NVM_DIR="$HOME/.nvm"

@@ -27,6 +27,7 @@ alias tlr='tempie list-range'
 case "$(uname)" in
   Darwin)
     alias tlst='tempie list $(date -v-4d +%Y-%m-%d)'
+    alias tlsf='tempie list $(date -v-3d +%Y-%m-%d)'
     alias tlsy='tempie list $(date -v-1d +%Y-%m-%d)'
     ;;
   Linux)
