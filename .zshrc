@@ -38,7 +38,9 @@ source ~/dotfiles/brew-switch.zsh
 
 eval "$(pyenv init -)" # Initialize pyenv
 eval "$(direnv hook zsh)" # Initialize direnv
-eval "$(atuin init zsh)" # Initialize atuin
+if command -v atuin >/dev/null 2>&1; then
+    eval "$(atuin init zsh)" # Initialize atuin
+fi
 
 if [ "$(uname)" = "Linux" ]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" # Initialize linuxbrew
