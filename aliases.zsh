@@ -16,6 +16,7 @@ alias lt='ls --tree'
 alias fd='fdfind'
 alias vf='vim $(fzf --preview "bat --color=always {}")'
 alias vim='nvim'
+alias ckt='ckan run -t'
 
 # tempie aliases
 alias tl='tempie log'
