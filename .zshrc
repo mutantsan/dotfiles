@@ -20,9 +20,9 @@ export MY_CONF_DIR="$HOME/myconf"
 export PLAYDATE_SDK_PATH="$HOME/.playdate-sdk"
 export GPG_TTY=$TTY
 export PATH="$HOME/.atuin/bin:$PATH" # atuin
-export FZF_DEFAULT_COMMAND="fdfind . $HOME"
+export FZF_DEFAULT_COMMAND="fd . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --hidden --follow --exclude .git"
-export FZF_ALT_C_COMMAND="fdfind -t d . $HOME"
+export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
 export ATUIN_THEME_DIR="$ATUIN_CONFIG_DIR/themes"
 export DIRENV_SKIP_TIMEOUT=1
@@ -34,16 +34,11 @@ source ~/dotfiles/initckan.zsh
 source ~/dotfiles/gopro.zsh
 source ~/dotfiles/notes.zsh
 source ~/dotfiles/aliases.zsh
-source ~/dotfiles/brew-switch.zsh
 
 eval "$(pyenv init -)" # Initialize pyenv
 eval "$(direnv hook zsh)" # Initialize direnv
 if command -v atuin >/dev/null 2>&1; then
     eval "$(atuin init zsh)" # Initialize atuin
-fi
-
-if [ "$(uname)" = "Linux" ]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" # Initialize linuxbrew
 fi
 
 ######## NVM ##################################################################
@@ -54,3 +49,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+. "$HOME/.local/bin/env"
