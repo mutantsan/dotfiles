@@ -21,6 +21,7 @@ export DIRENV_SKIP_TIMEOUT=1
 
 plugins=(fzf fzf-tab zsh-autosuggestions history zsh-syntax-highlighting nvm git)
 
+source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/initckan.zsh
 source ~/dotfiles/gopro.zsh
 source ~/dotfiles/notes.zsh
