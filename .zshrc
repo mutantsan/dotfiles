@@ -1,15 +1,7 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5ab8c8,bg=ffffff,bold,underline"
 export EDITOR='vim'
 export DISABLE_MAGIC_FUNCTIONS=true
-export ZSH_THEME="powerlevel10k/powerlevel10k"
 export GOPATH=$HOME/go # GO
 export PATH=$GOPATH/bin:$PATH # GO
 export PIPENV_PYTHON="$PYENV_ROOT/shims/python" # pyenv
@@ -29,7 +21,6 @@ export DIRENV_SKIP_TIMEOUT=1
 
 plugins=(fzf fzf-tab zsh-autosuggestions history zsh-syntax-highlighting nvm git)
 
-source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/initckan.zsh
 source ~/dotfiles/gopro.zsh
 source ~/dotfiles/notes.zsh
@@ -47,5 +38,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 ######## NVM END ##############################################################
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# keep the same path when open a new tab/split
+keep_current_path() {
+  printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+}
+precmd_functions+=(keep_current_path)
+
+eval "$(oh-my-posh init zsh --config /home/berry/dotfiles/oh-my-posh/my-theme.json)"
