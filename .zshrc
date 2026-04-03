@@ -12,6 +12,7 @@ export MY_CONF_DIR="$HOME/myconf"
 export PLAYDATE_SDK_PATH="$HOME/.playdate-sdk"
 export GPG_TTY=$TTY
 export PATH="$HOME/.atuin/bin:$PATH" # atuin
+export PATH="$HOME/.cargo/bin:$PATH" # cargo
 export FZF_DEFAULT_COMMAND="fd . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --hidden --follow --exclude .git"
 export FZF_ALT_C_COMMAND="fd -t d . $HOME"
