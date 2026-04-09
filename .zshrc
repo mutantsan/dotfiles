@@ -41,9 +41,11 @@ export NVM_DIR="$HOME/.nvm"
 ######## NVM END ##############################################################
 
 # keep the same path when open a new tab/split
-keep_current_path() {
-  printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
-}
-precmd_functions+=(keep_current_path)
+if [[ "$(uname -s)" != "Darwin" ]]; then
+  keep_current_path() {
+    printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+  }
+  precmd_functions+=(keep_current_path)
+fi
 
-eval "$(oh-my-posh init zsh --config /home/berry/dotfiles/oh-my-posh/my-theme.json)"
+eval "$(oh-my-posh init zsh --config ~/dotfiles/oh-my-posh/my-theme.json)"
