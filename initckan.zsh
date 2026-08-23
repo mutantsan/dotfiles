@@ -36,11 +36,11 @@ initckan() {
     envsubst <"$MY_CONF_DIR/templates/ckan.ini" >./config/ckan.ini
 
     # initializing solr core and postgres db with docker
-    docker exec -it pg17 createdb -O ckan_default ${project_name}
-    docker exec -it pg17 psql -U root -d ${project_name} -c "CREATE EXTENSION IF NOT EXISTS postgis;" >/dev/null 2>&1
+    docker exec -it pg18 createdb -O ckan_default ${project_name}
+    docker exec -it pg18 psql -U root -d ${project_name} -c "CREATE EXTENSION IF NOT EXISTS postgis;" >/dev/null 2>&1
     echo "💾 Database ${project_name} and PostGIS extension has been created"
 
-    docker exec -it solr8 solr create_core -c ${project_name} >/dev/null 2>&1
+    docker exec -it solr9 solr create_core -c ${project_name} >/dev/null 2>&1
     echo "🔍 Solr core ${project_name} has been created"
 
     # creating .envrc for direnv

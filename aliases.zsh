@@ -16,6 +16,12 @@ alias lt='ls --tree'
 alias vf='vim $(fzf --preview "bat --color=always {}")'
 alias vim='nvim'
 alias ckt='ckan run -t'
+alias cbm_list='codebase-memory-mcp cli list_projects | jq'
+alias cbm_run='codebase-memory-mcp --port=9749'
+
+cbm_index() {
+    codebase-memory-mcp cli index_repository "{\"repo_path\":\"$PWD\"}"
+}
 
 # tempie aliases
 alias tl='tempie log'
@@ -49,6 +55,18 @@ alias gx='gitx --all'
 alias gpt='git push --tags'
 alias got='git '
 alias get='git '
-alias gurl='git config --get remote.origin.url | sed "s|git@github.com:|https://github.com/|" | sed "s/\.git//"'
+alias gurl='git config --get remote.origin.url | sed -E "s#git@([^:]+):#https://\1/#" | sed -E "s#https?://##" | sed "s#^#https://#" | sed "s/\.git$//"'
 alias gtag='function _gtag() { git tag -a "v$1" -m "Release v$1"; }; _gtag'
+
+gadd() {
+    git diff --name-only | while IFS= read -r f; do
+        git --no-pager diff -- "$f"
+        printf "\n\n----------------------------------------\n"
+        printf "Stage %s? [y/N] " "$f"
+        read -r ans </dev/tty
+        [[ $ans =~ ^[Yy]$ ]] && git add -- "$f"
+        printf "\n\n"
+    done
+}
+
 ######## ALIASES END ##########################################################

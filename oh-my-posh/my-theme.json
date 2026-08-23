@@ -41,6 +41,9 @@
           "style": "powerline"
         },
         {
+          "options": {
+            "branch_icon": ""
+          },
           "template": " {{ .HEAD }} ",
           "foreground": "#193549",
           "powerline_symbol": "\ue0b0",

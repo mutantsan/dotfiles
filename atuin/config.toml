@@ -1,8 +1,12 @@
 ## filter out commands that are not useful for history
 history_filter = [
-  "^cd",
-  "^ls",
-  "^ll",
+  "^cd$",
+  "^ls$",
+  "^ll$",
+  "^tls$",
+  "^vim .$",
+  "^gl$",
+  "^gs$"
 ]
 
 ## possible values: prefix, fulltext, fuzzy, skim

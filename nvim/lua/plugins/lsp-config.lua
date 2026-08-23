@@ -32,8 +32,8 @@ return {
             "williamboman/mason-lspconfig.nvim",
         },
         config = function()
-            local lspconfig = require("lspconfig")
-            lspconfig.basedpyright.setup{}
+            vim.lsp.config("basedpyright", {})
+            vim.lsp.enable("basedpyright")
         end,
     },
 
