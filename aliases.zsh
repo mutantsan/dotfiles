@@ -18,6 +18,8 @@ alias vim='nvim'
 alias ckt='ckan run -t'
 alias cbm_list='codebase-memory-mcp cli list_projects | jq'
 alias cbm_run='codebase-memory-mcp --port=9749'
+alias pip='uv pip'
+alias opip='pip'
 
 cbm_index() {
     codebase-memory-mcp cli index_repository "{\"repo_path\":\"$PWD\"}"
@@ -27,7 +29,7 @@ cbm_index() {
 alias tl='tempie log'
 alias tls='tempie list'
 alias td='tempie delete'
-
+alias tm='tempie month'
 alias tlr='tempie list-range'
 
 case "$(uname)" in
