@@ -50,6 +50,61 @@
     },
 
     // -------------------------------
+    // Fold & Unfold
+    // -------------------------------
+    {
+        "key": "shift+alt+[",
+        "command": "editor.fold",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+]",
+        "command": "editor.unfold",
+        "when": "editorFocus"
+    },
+
+    // -------------------------------
+    // Split Panels
+    // -------------------------------
+    {
+        "key": "shift+alt+-",
+        "command": "workbench.action.joinAllGroups",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+=",
+        "command": "workbench.action.splitEditor",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+right",
+        "command": "workbench.action.navigateRight",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+left",
+        "command": "workbench.action.navigateLeft",
+        "when": "editorFocus"
+    },
+
+    // -------------------------------
+    // Open DevTools
+    // -------------------------------
+    {
+        "key": "alt+ctrl+i",
+        "command": "workbench.action.toggleDevTools"
+    },
+
+    // -------------------------------
+    // Hide Toaster Notifications
+    // -------------------------------
+    {
+        "key": "escape",
+        "command": "notifications.hideToasts",
+        "when": "notificationToastsVisible"
+    },
+
+    // -------------------------------
     // Defaults
     // -------------------------------
     {
@@ -65,7 +120,7 @@
         "command": "-workbench.action.quickTextSearch"
     },
     {
-        "key": "ctrl+shift+d",
+        "key": "ctrl+shift+b",
         "command": "workbench.view.debug"
     },
     {
@@ -77,8 +132,21 @@
         "command": "workbench.action.showCommands"
     },
     {
-        "key": "alt+r",
-        "command": "-toggleSearchEditorRegex",
-        "when": "inSearchEditor && searchInputBoxFocus"
+        "key": "ctrl+shift+d",
+        "command": "workbench.view.extension.containersView"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.panel.chat",
+        "when": "workbench.panel.chat.view.copilot.active"
+    },
+    {
+        "key": "ctrl+alt+i",
+        "command": "-workbench.panel.chat",
+        "when": "workbench.panel.chat.view.copilot.active"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "workbench.view.extension.containersView"
     }
 ]
