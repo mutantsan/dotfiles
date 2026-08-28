@@ -36,8 +36,10 @@ initckan() {
     envsubst <"$MY_CONF_DIR/templates/ckan.ini" >./config/ckan.ini
 
     # initializing solr core and postgres db with docker
+    docker exec -it pg18 psql -U root -c "CREATE USER ckan_default WITH PASSWORD 'pass' NOSUPERUSER NOCREATEDB NOCREATEROLE;"
+    docker exec -it pg18 psql -U root -c "CREATE USER datastore_default WITH PASSWORD 'pass' NOSUPERUSER NOCREATEDB NOCREATEROLE;"
+    docker exec -it pg18 psql -U root -c "CREATE EXTENSION IF NOT EXISTS vector; CREATE EXTENSION IF NOT EXISTS postgis;"  >/dev/null 2>&1
     docker exec -it pg18 createdb -O ckan_default ${project_name}
-    docker exec -it pg18 psql -U root -d ${project_name} -c "CREATE EXTENSION IF NOT EXISTS postgis;" >/dev/null 2>&1
     echo "💾 Database ${project_name} and PostGIS extension has been created"
 
     docker exec -it solr9 solr create_core -c ${project_name} >/dev/null 2>&1
@@ -50,7 +52,8 @@ initckan() {
     echo 'export CKAN_INI=$PWD/config/ckan.ini' >>.envrc
     echo 'export SETUPTOOLS_ENABLE_FEATURES="legacy-editable"' >>.envrc
     echo 'export PYTHONBREAKPOINT="ipdb.set_trace"' >>.envrc
-    echo "use node 22" >>.envrc
+    echo 'export CDM_USE_UV=1' >>.envrc
+    echo "use node 24" >>.envrc
     echo "unset PS1" >>.envrc
 
     echo "✅ CKAN project '$project_name' initialized with Python $python_version\n"
