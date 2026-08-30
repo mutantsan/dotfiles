@@ -6,12 +6,15 @@
     "diffEditor.ignoreTrimWhitespace": false, // do not ignore white spaces
     "editor.emptySelectionClipboard": true, // cut/copy line if my cursor is on it
     "workbench.editor.enablePreview": false, // disable preview mode
+    "workbench.experimental.modernUI": false, // disable modern ui
     "files.trimTrailingWhitespace": true, // trim trailing whitespace on file save
     "files.insertFinalNewline": true, // insert a final new line at the end of the file when saving it
     "files.trimFinalNewlines": true, // trim extra new lines after the final one
     "editor.snippetSuggestions": "top", // show snippet suggestions on top of other suggestions
+    "editor.suggest.showSnippets": true,
     "editor.detectIndentation": false, // do not automatically detected indentation on file open
-
+    "editor.tabSize": 4,
+    "editor.glyphMargin": false, // hide breakpoint gutter
     // -------------------------------
     // Hide unused UI elemenets
     // -------------------------------
@@ -20,10 +23,7 @@
     "editor.guides.indentation": false, // Don't render indent guides
     "workbench.editor.showTabs": "none", // The editor title area is not displayed
     "breadcrumbs.enabled": false, // hide the activity bar
-    "workbench.activityBar.orientation": "vertical", // Controls the visibility of the status bar a`t the bottom of the workbench.
-    "workbench.activityBar.location": "hidden", // Hide the Activity Bar
     "editor.lineNumbers": "off", // Controls the visibility of the status bar at the bottom of the workbench
-
     // -------------------------------
     // Reduce Noise
     // -------------------------------
@@ -33,7 +33,7 @@
     "editor.matchBrackets": "never", // Don't highlight matching brackets
     "workbench.tips.enabled": false, // Disable the watermark tips when no editor is open
     "editor.colorDecorators": false, // Don't render the inline color decorators and color picker
-    "git.decorations.enabled": false, // Controls whether Git contributes colors and badges to the Explorer and the Open Editors view
+    "git.decorations.enabled": true, // Controls whether Git contributes colors and badges to the Explorer and the Open Editors view
     "editor.lightbulb.enabled": "onCode", // Show the code action menu when the cursor is on lines with code
     "editor.selectionHighlight": false, // Do not highlight matches similar to the selection
     "editor.overviewRulerBorder": false, // Controls whether a border should be drawn around the overview ruler
@@ -48,26 +48,11 @@
     "editor.gotoLocation.multipleImplementations": "goto",
     "editor.gotoLocation.multipleReferences": "goto",
     "editor.gotoLocation.multipleDeclarations": "goto",
-    "editor.gotoLocation.multipleTypeDefinitions": "goto",
-
-    // -------------------------------
-    // UI apperance
-    // -------------------------------
-    "workbench.colorTheme": "Quiet Light", // Change theme
-    "workbench.iconTheme": "catppuccin-mocha", // Specifies the file icon theme
+    "editor.gotoLocation.multipleTypeDefinitions": "goto", // Change theme
     "workbench.tree.indent": 16, // Controls tree indentation in pixels
-    "workbench.sideBar.location": "right", // move sidebar to the right side
-    "terminal.integrated.fontSize": 15, // Controls the font size in pixels of the terminal.
+    "workbench.sideBar.location": "right",
+    "terminal.integrated.fontSize": 14, // Controls the font size in pixels of the terminal.
     "terminal.integrated.lineHeight": 1.5, // Controls the line height of the terminal
-    "custom-ui-style.stylesheet": {
-        "*": "font-family: MonoLisa, monospace; font-size: 16px;",
-        ".quick-input-widget": "width: 80% !important; max-width: 1000px !important; left: 50% !important; transform: translate(-50%, 0) !important; margin-left: unset !important; top: 25vh !important; box-shadow: unset !important; border-width: 2px !important; border-color: #d3d3d3 !important;", // center the command palette and modify look
-        ".quick-input-list .scrollbar": "display: none", // hide scroll bar inside the command palette
-        ".editor-widget.find-widget": "border: 1px solid #d3d3d3; border-top: unset; box-shadow: unset",
-        ".notification-toast": "box-shadow: none !important", // remove box-shadow from notification toast
-        ".editor-actions": "display: none" // hides the editr actions (split, settings etc)
-    },
-
     // -------------------------------
     // Window Settings
     // -------------------------------
@@ -75,7 +60,6 @@
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootNameShort}", // Change title content
     "window.newWindowDimensions": "inherit", // inherit the previous window size/position
     "window.menuBarVisibility": "compact",
-
     // -------------------------------
     // Editor Settings
     // -------------------------------
@@ -83,21 +67,20 @@
     "editor.unicodeHighlight.ambiguousCharacters": true, // Highlight non-ASCII characters
     "editor.cursorBlinking": "solid", // Control the cursor animation style
     "editor.fontLigatures": true, // Enables font ligatures
-    "editor.fontSize": 15, // Controls the font size in pixels
+    "editor.fontSize": 13, // Controls the font size in pixels
     "editor.lineHeight": 1.6, // Controls the line height
     "editor.fontFamily": "MonoLisa, monospace", // Controls the font family
-
     // -------------------------------
     // Explorer Settings
     // -------------------------------
     "explorer.compactFolders": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-
     // -------------------------------
     // Search Settings
     // -------------------------------
     "search.useIgnoreFiles": false, // Controls whether to use .gitignore and .ignore files when searching for files
+    "explorer.excludeGitIgnore": true,
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -109,11 +92,15 @@
         "**/__pycache__": true,
         "**/*.egg-info": true,
         "**/.direnv/": true,
-        "**/node_modules/": true,
         "**/.ruff_cache": true,
-        "**/.pytest_cache": true
+        "**/.pytest_cache": true,
+        "**/node_modules/": true,
     },
-
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/__pycache__/**": true,
+        "**/venv/**": true
+    },
     // -------------------------------
     // File Handling
     // -------------------------------
@@ -122,15 +109,47 @@
         "*.twig": "html",
         "*.module": "php"
     },
-
     // -------------------------------
     // Python Configuration
     // -------------------------------
     "python.analysis.logLevel": "Information", // Specifies the level of logging for the Output panel
     "python.analysis.autoImportCompletions": true, // Offer auto-import completions
-    "python.analysis.typeCheckingMode": "basic", // Defines the default rule set for type checking
-    "python.analysis.extraPaths": ["./ckan"], // Additional import search resolution paths
-
+    "python.analysis.typeCheckingMode": "standard", // Defines the default rule set for type checking
+    "python.analysis.indexing": false,
+    "python.analysis.extraPaths": [
+        "./ckan",
+        "./ckanext-blocksmith",
+        "./ckanext-mailcraft",
+        "./ckanext-admin-panel",
+        "./ckanext-harvest",
+        "./ckanext-harvest-basket",
+        "./ckanext-dcat",
+        "./ckanext-spatial",
+        "./ckanext-scheming",
+        "./ckanext-xloader",
+        "./ckanext-toolbelt",
+        "./ckanext-doi",
+        "./ckanext-resource-docs",
+        "./ckanext-cdp-iar",
+        "./ckanext-dataset-series",
+        "./ckanext-drupal-idp",
+        "./ckanext-drupal-api",
+        "./ckanext-tables",
+        "./ckanext-transmute",
+        "./ckanext-syndicate",
+        "./ckanext-files",
+        "./ckanext-better-stats",
+        "./ckanext-event-audit",
+        "./ckanext-knowledge-assistant",
+        "./ckanext-theming",
+        "./ckanext-portal-core",
+        "./ckanext-portal-activity",
+        "./ckanext-portal-revision",
+        "./ckanext-bulk",
+        "./ckanext-ingest",
+        "./ckanext-search-autocomplete",
+        "./../ckan"
+    ], // Additional import search resolution paths
     // -------------------------------
     // Language-specific Settings
     // -------------------------------
@@ -150,7 +169,7 @@
         "editor.defaultFormatter": "vscode.css-language-features"
     },
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "charliermarsh.ruff",
     },
     "[scss]": {
         "editor.defaultFormatter": "vscode.css-language-features"
@@ -158,11 +177,40 @@
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
-
+    "[yml]": {
+        "editor.formatOnSave": false,
+        "editor.autoIndent": "advanced"
+    },
     // -------------------------------
     // Other, the new config options will fall down there
     // -------------------------------
     "git.openRepositoryInParentFolders": "never",
-    "cursor.cpp.disabledLanguages": [],
-    "workbench.statusBar.visible": false
+    "search.exclude": {
+        "**/*.po": true,
+        "**/*.pot": true,
+        "**/example_*/": true,
+        "**/*.js.map": true,
+        "public/base": true,
+        "**/storage/webassets/": true,
+        "**/ckanext-*/site/": true,
+        "**/node_modules/": true,
+        "**/dist/": true,
+        "**/venv/": true,
+        "**/.venv/": true,
+    },
+    "vsicons.dontShowNewVersionMessage": true,
+    "ruff.configuration": "/home/berry/projects/pyproject.toml",
+    "remote.autoForwardPortsSource": "hybrid",
+    "gitlens.mode.active": "default",
+    "workbench.editorLargeFileConfirmation": 25,
+    "workbench.activityBar.location": "hidden",
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "dev.containers.dockerPath": "podman",
+    "chat.titleBar.openInAgentsWindow.enabled": false,
+    "chat.viewSessions.orientation": "stacked",
+    "chat.disableAIFeatures": true,
+    "window.commandCenter": false,
+    "workbench.colorTheme": "Ayu Mirage Bordered"
 }

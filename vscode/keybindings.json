@@ -1,11 +1,11 @@
 [
     {
         "key": "ctrl+alt+backspace",
-        "command": "deleteWordPartLeft",
+        "command": "deleteWordPartLeft"
     },
     {
         "key": "alt+f",
-        "command": "workbench.action.quickTextSearch",
+        "command": "workbench.action.quickTextSearch"
     },
 
     // -------------------------------
@@ -20,11 +20,11 @@
             "value": [
                 {
                     "editor.fontSize": 15, // Controls the font size in pixels
-                    "editor.lineHeight": 1.6, // Controls the line height
+                    "editor.lineHeight": 1.6 // Controls the line height
                 },
                 {
                     "editor.fontSize": 12,
-                    "editor.lineHeight": 0,
+                    "editor.lineHeight": 0
                 }
             ]
         }
@@ -102,7 +102,7 @@
         "key": "escape",
         "command": "notifications.hideToasts",
         "when": "notificationToastsVisible"
-    }
+    },
 
     // -------------------------------
     // Defaults
@@ -120,10 +120,6 @@
         "command": "-workbench.action.quickTextSearch"
     },
     {
-        "key": "ctrl+shift+d",
-        "command": "dockerContainers.focus"
-    },
-    {
         "key": "ctrl+shift+b",
         "command": "workbench.view.debug"
     },
@@ -134,5 +130,23 @@
     {
         "key": "ctrl+shift+p",
         "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "workbench.view.extension.containersView"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.panel.chat",
+        "when": "workbench.panel.chat.view.copilot.active"
+    },
+    {
+        "key": "ctrl+alt+i",
+        "command": "-workbench.panel.chat",
+        "when": "workbench.panel.chat.view.copilot.active"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "workbench.view.extension.containersView"
     }
 ]
