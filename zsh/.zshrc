@@ -25,9 +25,10 @@ export CDM_USE_UV=1
 plugins=(fzf fzf-tab zsh-autosuggestions history zsh-syntax-highlighting nvm git)
 
 source $ZSH/oh-my-zsh.sh
-source ~/dotfiles/initckan.zsh
-source ~/dotfiles/notes.zsh
-source ~/dotfiles/aliases.zsh
+for _f in "$HOME/.config/bash/"*.sh; do
+  [[ -r "$_f" ]] && source "$_f"
+done
+unset _f
 
 eval "$(pyenv init -)" # Initialize pyenv
 eval "$(direnv hook zsh)" # Initialize direnv
@@ -49,4 +50,4 @@ if [[ "$(uname -s)" != "Darwin" ]]; then
   precmd_functions+=(keep_current_path)
 fi
 
-eval "$(oh-my-posh init zsh --config ~/dotfiles/oh-my-posh/my-theme.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/my-theme.json)"
