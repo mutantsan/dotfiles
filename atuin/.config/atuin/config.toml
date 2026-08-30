@@ -16,7 +16,7 @@ search_mode = "fuzzy"
 style = "full"
 
 [theme]
-name = "mytheme"
+name = "everforest"
 
 [search]
 filters = [ "global", "session", "workspace", "directory" ]

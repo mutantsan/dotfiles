@@ -1,0 +1,14 @@
+[theme]
+name = "everforest"
+
+# Colors from the Omarchy Everforest theme
+# /usr/share/omarchy/themes/everforest/colors.toml
+[colors]
+AlertInfo = "#a7c080"    # green
+AlertWarn = "#dbbc7f"    # yellow
+AlertError = "#e67e80"   # red
+Annotation = "#9da9a0"   # light_foreground
+Base = "#d3c6aa"         # foreground
+Guidance = "#7fbbb3"     # blue / accent
+Important = "#e09d7f"    # orange
+Title = "#83c092"        # cyan
