@@ -1,13 +1,19 @@
 [
+    // -------------------------------
+    // Text Editing
+    // -------------------------------
     {
         "key": "ctrl+alt+backspace",
-        "command": "deleteWordPartLeft",
-    },
-    {
-        "key": "alt+f",
-        "command": "workbench.action.quickTextSearch",
+        "command": "deleteWordPartLeft"
     },
 
+    // -------------------------------
+    // Search
+    // -------------------------------
+    {
+        "key": "alt+f",
+        "command": "workbench.action.quickTextSearch"
+    },
     // -------------------------------
     // Toggles
     // -------------------------------
@@ -19,12 +25,14 @@
             "id": "fontSize",
             "value": [
                 {
-                    "editor.fontSize": 15, // Controls the font size in pixels
-                    "editor.lineHeight": 1.6, // Controls the line height
+                    // regular font size
+                    "editor.fontSize": 13, // Controls the font size in pixels
+                    "editor.lineHeight": 1.6 // Controls the line height
                 },
                 {
-                    "editor.fontSize": 12,
-                    "editor.lineHeight": 0,
+                    // small font size
+                    "editor.fontSize": 10,
+                    "editor.lineHeight": 1
                 }
             ]
         }
@@ -88,6 +96,14 @@
     },
 
     // -------------------------------
+    // Formatting
+    // -------------------------------
+    {
+        "key": "ctrl+shift+i",
+        "command": "editor.action.formatDocument"
+    },
+
+    // -------------------------------
     // Open DevTools
     // -------------------------------
     {
@@ -105,7 +121,7 @@
     },
 
     // -------------------------------
-    // Defaults
+    // View / Panel Navigation
     // -------------------------------
     {
         "key": "shift+ctrl+g",
@@ -114,10 +130,6 @@
     {
         "key": "shift+ctrl+e",
         "command": "workbench.view.explorer"
-    },
-    {
-        "key": "ctrl+shift+f",
-        "command": "-workbench.action.quickTextSearch"
     },
     {
         "key": "ctrl+shift+d",
@@ -134,10 +146,5 @@
     {
         "key": "ctrl+shift+p",
         "command": "workbench.action.showCommands"
-    },
-
-    {
-        "key": "ctrl+shift+i",
-        "command": "editor.action.formatDocument"
     }
 ]
