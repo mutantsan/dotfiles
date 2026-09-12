@@ -102,7 +102,7 @@
         "key": "escape",
         "command": "notifications.hideToasts",
         "when": "notificationToastsVisible"
-    }
+    },
 
     // -------------------------------
     // Defaults
@@ -134,5 +134,10 @@
     {
         "key": "ctrl+shift+p",
         "command": "workbench.action.showCommands"
+    },
+
+    {
+        "key": "ctrl+shift+i",
+        "command": "editor.action.formatDocument"
     }
 ]
