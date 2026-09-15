@@ -8,6 +8,8 @@
 # (don't mess with these directly, just overwrite them here!)
 source "$OMARCHY_PATH/default/bash/rc"
 
+export PATH="$HOME/.cargo/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
 # Add your own exports, aliases, and functions here.
 
 # Personal dotfiles: bash fragments in ~/.config/bash (stow-managed from ~/dotfiles/bash)
@@ -43,6 +45,8 @@ fi
 
 [[ -r /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
+
+source /usr/share/nvm/init-nvm.sh
 
 # atuin
 eval "$(atuin init bash)"

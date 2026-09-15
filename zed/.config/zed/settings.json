@@ -1,0 +1,180 @@
+{
+    // -------------------------------
+    // Update defaults
+    // -------------------------------
+    "file_types": {
+        "HTML": ["*.html", "*.twig"],
+        "PHP": ["*.module"]
+    },
+    "remove_trailing_whitespace_on_save": true,
+    "ensure_final_newline_on_save": true,
+    "snippet_sort_order": "top",
+
+    // -------------------------------
+    // Hide unused UI elements
+    // -------------------------------
+    "minimap": {
+        "show": "never"
+    },
+    "indent_guides": {
+        "enabled": false
+    },
+    "tab_bar": {
+        "show": false
+    },
+    "toolbar": {
+        "breadcrumbs": false
+    },
+    "gutter": {
+        "line_numbers": false
+    },
+    "status_bar": {
+        "experimental.show": false
+    },
+    "project_panel": {
+        "button": false,
+        "dock": "right",
+        "indent_size": 16,
+        "auto_fold_dirs": false,
+        "git_status": false,
+        "indent_guides": {
+            "show": "never"
+        }
+    },
+    "outline_panel": {
+        "button": false
+    },
+    "git_panel": {
+        "button": false
+    },
+    "collaboration_panel": {
+        "button": false
+    },
+
+    // -------------------------------
+    // Reduce noise
+    // -------------------------------
+    "hover_popover_delay": 300,
+    "current_line_highlight": "none",
+    "selection_highlight": false,
+
+    // -------------------------------
+    // UI appearance
+    // -------------------------------
+    // Browse alternatives with ctrl-k ctrl-t (theme_selector::Toggle), or install a theme
+    // extension via ctrl-shift-x.
+    "theme": "One Light",
+    // Requires installing the community "Catppuccin Icons" extension first (ctrl-shift-x).
+    // Set this to whatever name it registers and confirm via the icon theme picker.
+    // "icon_theme": "Catppuccin Mocha",
+    "terminal": {
+        "font_size": 15,
+        "line_height": {
+            "custom": 1.5
+        }
+    },
+
+    // -------------------------------
+    // Window settings
+    // -------------------------------
+    "title_bar": {
+        "show_menus": false
+    },
+
+    // -------------------------------
+    // Editor settings
+    // -------------------------------
+    "cursor_blink": false,
+    "buffer_font_family": "MonoLisa",
+    "buffer_font_size": 15,
+    "buffer_line_height": {
+        "custom": 1.6
+    },
+    "buffer_font_features": {
+        "calt": true
+    },
+    "ui_font_size": 16,
+
+    // -------------------------------
+    // Search settings
+    // -------------------------------
+    "search": {
+        "include_ignored": true
+    },
+    "file_scan_exclusions": [
+        "**/.git",
+        "**/.svn",
+        "**/.hg",
+        "**/.jj",
+        "**/.sl",
+        "**/.repo",
+        "**/CVS",
+        "**/.DS_Store",
+        "**/Thumbs.db",
+        "**/.classpath",
+        "**/.settings",
+        "**/*.pyc",
+        "**/__pycache__",
+        "**/*.egg-info",
+        "**/.direnv",
+        "**/node_modules",
+        "**/.ruff_cache",
+        "**/.pytest_cache"
+    ],
+
+    // -------------------------------
+    // Python configuration
+    // -------------------------------
+    // Passed through to basedpyright verbatim - "python.analysis.*" is inherited from pyright
+    // but hasn't been double-checked against basedpyright's own schema, so verify it actually
+    // takes effect (Zed's LSP logs / :zed::OpenSettingsFile can help debug).
+    "lsp": {
+        "basedpyright": {
+            "settings": {
+                "python.analysis.logLevel": "Information",
+                "python.analysis.autoImportCompletions": true,
+                "python.analysis.typeCheckingMode": "standard",
+                "python.analysis.indexing": false,
+                "python.analysis.extraPaths": [
+                    "./ckan",
+                    "./ckanext-blocksmith",
+                    "./ckanext-mailcraft",
+                    "./ckanext-admin-panel",
+                    "./ckanext-harvest",
+                    "./ckanext-harvest-basket",
+                    "./ckanext-dcat",
+                    "./ckanext-spatial",
+                    "./ckanext-scheming",
+                    "./ckanext-xloader",
+                    "./ckanext-toolbelt",
+                    "./ckanext-doi",
+                    "./ckanext-resource-docs",
+                    "./ckanext-cdp-iar",
+                    "./ckanext-dataset-series",
+                    "./ckanext-drupal-idp",
+                    "./ckanext-drupal-api",
+                    "./ckanext-tables",
+                    "./ckanext-transmute",
+                    "./ckanext-syndicate",
+                    "./ckanext-files",
+                    "./ckanext-better-stats",
+                    "./ckanext-event-audit",
+                    "./ckanext-knowledge-assistant",
+                    "./ckanext-theming",
+                    "./ckanext-portal-core",
+                    "./ckanext-portal-activity",
+                    "./ckanext-portal-revision",
+                    "./ckanext-bulk",
+                    "./ckanext-ingest",
+                    "./ckanext-search-autocomplete",
+                    "./../ckan"
+                ]
+            }
+        }
+    },
+
+    // -------------------------------
+    // Other
+    // -------------------------------
+    "base_keymap": "VSCode"
+}

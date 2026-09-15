@@ -20,6 +20,7 @@ alias cbm_list='codebase-memory-mcp cli list_projects | jq'
 alias cbm_run='codebase-memory-mcp --port=9749'
 alias pip='uv pip'
 alias opip='pip'
+alias op='omarchy plugin'
 
 cbm_index() {
     codebase-memory-mcp cli index_repository "{\"repo_path\":\"$PWD\"}"
@@ -63,12 +64,18 @@ alias gtag='function _gtag() { git tag -a "v$1" -m "Release v$1"; }; _gtag'
 
 gadd() {
     git diff --name-only | while IFS= read -r f; do
-        git --no-pager diff -- "$f"
+        git diff -- "$f"
+
         printf "\n\n----------------------------------------\n"
         printf "Stage %s? [y/N] " "$f"
+
         read -r ans </dev/tty
-        [[ $ans =~ ^[Yy]$ ]] && git add -- "$f"
-        printf "\n\n"
+
+        if [[ $ans =~ ^[Yy]$ ]]; then
+            git add -- "$f"
+        fi
+
+        printf "\n"
     done
 }
 

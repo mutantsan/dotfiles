@@ -1,53 +1,115 @@
-export ZSH="$HOME/.oh-my-zsh"
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5ab8c8,bg=ffffff,bold,underline"
-export EDITOR='vim'
-export DISABLE_MAGIC_FUNCTIONS=true
-export PIPENV_PYTHON="$PYENV_ROOT/shims/python" # pyenv
-export PYENV_ROOT="$HOME/.pyenv" # pyenv
-export GOPATH=$HOME/go # GO
-export PATH=$GOPATH/bin:$PATH # GO
-export PATH="$PYENV_ROOT/bin:$PATH" # pyenv
-export PATH="$PATH:/home/cherry/.local/bin" # pipx
-export PATH="/home/cherry/.local/bin:$PATH" # codebase-memory-mcp
-export PATH="$HOME/.atuin/bin:$PATH" # atuin
-export PATH="$HOME/.cargo/bin:$PATH" # cargo
-export MY_CONF_DIR="$HOME/dotfiles"
+# ~/.zshrc — Omarchy base + personal layer   (stow: dotfiles/zsh/.zshrc)
+#
+# Model: bash stays the login shell; `chsh -s /usr/bin/zsh` (or Omarchy's
+# `exec zsh` hook) hands off to zsh, which reads this file. The shared
+# Omarchy shell base is provided by the `omarchy-zsh` package
+# (/usr/share/omarchy-zsh/shell/*). Personal config is layered on top and
+# mirrors the old ~/.bashrc so behaviour stays the same.
+
+# Not interactive: do nothing.
+[[ $- != *i* ]] && return
+
+# ---------------------------------------------------------------------------
+# Omarchy base
+# ---------------------------------------------------------------------------
+# OMARCHY_PATH / PATH bootstrap (guarded; also present via /etc/profile.d).
+[[ -r /usr/share/omarchy/default/bash/env-bootstrap ]] &&
+  source /usr/share/omarchy/default/bash/env-bootstrap
+
+# zsh options, keybindings, completion, fzf ZLE widgets, syntax-highlighting.
+[[ -f /usr/share/omarchy-zsh/shell/zoptions ]] &&
+  source /usr/share/omarchy-zsh/shell/zoptions
+
+# Shared aliases / functions / env / tool init (mise, starship, zoxide,
+# try, fzf) — identical content to what the bash side loads.
+[[ -f /usr/share/omarchy-zsh/shell/all ]] &&
+  source /usr/share/omarchy-zsh/shell/all
+
+# ---------------------------------------------------------------------------
+# Personal environment
+# ---------------------------------------------------------------------------
+export GOPATH="$HOME/go"
+export PYENV_ROOT="$HOME/.pyenv"
+export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 export PLAYDATE_SDK_PATH="$HOME/.playdate-sdk"
-export GPG_TTY=$TTY
-export FZF_DEFAULT_COMMAND="fd . $HOME"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --hidden --follow --exclude .git"
-export FZF_ALT_C_COMMAND="fd -t d . $HOME"
+export MY_CONF_DIR="$HOME/dotfiles"        # used by initckan for templates/ckan.ini
+export GPG_TTY="$TTY"
+
+export CDM_USE_UV=1
+export DIRENV_SKIP_TIMEOUT=1
 export ATUIN_CONFIG_DIR="$HOME/.config/atuin"
 export ATUIN_THEME_DIR="$ATUIN_CONFIG_DIR/themes"
-export DIRENV_SKIP_TIMEOUT=1
-export CDM_USE_UV=1
 
-plugins=(fzf fzf-tab zsh-autosuggestions history zsh-syntax-highlighting nvm git)
+# Alt-C: fuzzy-cd into any dir under $HOME (not just from $PWD)
+export FZF_ALT_C_COMMAND="fd -t d --follow \
+  -E .git \
+  -E .direnv \
+  -E node_modules \
+  -E __pycache__ \
+  -E .cargo \
+  -E .nvm \
+  -E .npm \
+  -E .pyenv \
+  -E .ipython \
+  -E .cache \
+  -E .vscode \
+  -E .rustup \
+  -E .steam \
+  -E go/pkg/ \
+  . $HOME"
 
-source $ZSH/oh-my-zsh.sh
-for _f in "$HOME/.config/bash/"*.sh; do
+# PATH — Omarchy already adds ~/.local/bin and mise shims.
+path=(
+  "$PYENV_ROOT/bin"
+  "$HOME/.cargo/bin"
+  "$GOPATH/bin"
+  $path
+)
+[[ -d "$HOME/.atuin/bin" ]] && path=("$HOME/.atuin/bin" $path)
+typeset -U path                            # dedupe, keep first occurrence
+
+# ---------------------------------------------------------------------------
+# Personal tool init
+# ---------------------------------------------------------------------------
+# pyenv + nvm are kept alongside mise deliberately: the initckan workflow
+# needs `pyenv` and `$HOME/.nvm/versions/node`. They prepend their shims,
+# so python/node resolve to pyenv/nvm — same as the old bash setup.
+command -v pyenv  &>/dev/null && eval "$(pyenv init - zsh)"
+command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
+command -v atuin  &>/dev/null && eval "$(atuin init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+if [[ -s /usr/share/nvm/init-nvm.sh ]]; then
+  source /usr/share/nvm/init-nvm.sh
+elif [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  source "$NVM_DIR/nvm.sh"
+  autoload -U +X bashcompinit && bashcompinit
+  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+fi
+
+# ---------------------------------------------------------------------------
+# Personal shell fragments (stow-managed ~/.config/bash/*.sh)
+# ---------------------------------------------------------------------------
+# Sourced AFTER the Omarchy base so personal aliases win — same as bash.
+for _f in "$HOME/.config/bash/"*.sh(N); do
   [[ -r "$_f" ]] && source "$_f"
 done
 unset _f
 
-eval "$(pyenv init -)" # Initialize pyenv
-eval "$(direnv hook zsh)" # Initialize direnv
-if command -v atuin >/dev/null 2>&1; then
-    eval "$(atuin init zsh)" # Initialize atuin
-fi
 
-######## NVM ##################################################################
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-######## NVM END ##############################################################
+# Optional: `sudo pacman -S zsh-autosuggestions` to enable.
+[[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# keep the same path when open a new tab/split
-if [[ "$(uname -s)" != "Darwin" ]]; then
-  keep_current_path() {
-    printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
-  }
-  precmd_functions+=(keep_current_path)
-fi
-
-eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/my-theme.json)"
+sbx() {
+  if [[ "$1 $2" == "run claude" && $# -eq 2 ]]; then
+    local name="claude-${PWD:t}"
+    if command sbx ls 2>/dev/null | awk 'NR>1{print $1}' | grep -qx "$name"; then
+      command sbx run claude --name "$name"                       # exists → attach
+    else
+      command sbx run claude --static-mcp codebase-memory-mcp     # new → bake it in
+    fi
+  else
+    command sbx "$@"
+  fi
+}
