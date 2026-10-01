@@ -26,6 +26,19 @@
   source /usr/share/omarchy-zsh/shell/all
 
 # ---------------------------------------------------------------------------
+# Key bindings
+# ---------------------------------------------------------------------------
+# omarchy-zsh's zoptions binds arrows/history but leaves Home/End/Delete
+# unbound, so their raw escape sequences (e.g. `\E[3~`) get inserted as
+# literal text (the trailing `~`) instead of being consumed. Resolve via
+# terminfo so this works both bare (TERM=xterm-ghostty) and inside tmux
+# (TERM=tmux-256color), which use different sequences for the same keys.
+zmodload zsh/terminfo
+[[ -n $terminfo[khome] ]] && bindkey "$terminfo[khome]" beginning-of-line
+[[ -n $terminfo[kend]  ]] && bindkey "$terminfo[kend]"  end-of-line
+[[ -n $terminfo[kdch1] ]] && bindkey "$terminfo[kdch1]" delete-char
+
+# ---------------------------------------------------------------------------
 # Personal environment
 # ---------------------------------------------------------------------------
 export GOPATH="$HOME/go"
@@ -113,3 +126,10 @@ sbx() {
     command sbx "$@"
   fi
 }
+
+# >>> LazyDB installer >>>
+case ":$PATH:" in
+    *:/home/cherry/.local/bin:*) ;;
+    *) export PATH=/home/cherry/.local/bin:"$PATH" ;;
+esac
+# <<< LazyDB installer <<<

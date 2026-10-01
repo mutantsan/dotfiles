@@ -45,7 +45,8 @@
         "context": "Workspace",
         "bindings": {
             "shift-alt-right": "workspace::ActivatePaneRight",
-            "shift-alt-left": "workspace::ActivatePaneLeft"
+            "shift-alt-left": "workspace::ActivatePaneLeft",
+            "ctrl-b": "workspace::ToggleRightDock"
         }
     }
 ]

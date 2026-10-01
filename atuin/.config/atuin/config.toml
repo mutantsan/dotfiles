@@ -21,7 +21,6 @@ history_filter = [
 
   "^npm ci$",
   "^npm i$",
-  "^npm run .+$",
 
   "^jb$",
 ]
