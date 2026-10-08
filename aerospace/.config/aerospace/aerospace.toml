@@ -51,10 +51,10 @@ on-mode-changed = []
 
 # Notify SketchyBar about workspace switches
 # See: https://nikitabobko.github.io/AeroSpace/goodies#show-aerospace-workspaces-in-sketchybar
-exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change']
-on-focus-changed = ['exec-and-forget sketchybar --trigger aerospace_focus_change']
+exec-on-workspace-change = []
+on-focus-changed = []
 
-focus-follows-mouse.enabled = true
+focus-follows-mouse.enabled = false
 
 # Possible values: (qwerty|dvorak|colemak)
 key-mapping.preset = 'qwerty'
