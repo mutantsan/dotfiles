@@ -1,4 +1,4 @@
-# ~/.zshrc — Omarchy base + personal layer   (stow: dotfiles/zsh/.zshrc)
+# ~/zshrc — Omarchy base + personal layer   (stow: dotfiles/zsh/.zshrc)
 #
 # Model: bash stays the login shell; `chsh -s /usr/bin/zsh` (or Omarchy's
 # `exec zsh` hook) hands off to zsh, which reads this file. The shared
@@ -24,6 +24,21 @@
 # try, fzf) — identical content to what the bash side loads.
 [[ -f /usr/share/omarchy-zsh/shell/all ]] &&
   source /usr/share/omarchy-zsh/shell/all
+
+# ---------------------------------------------------------------------------
+# oh-my-zsh base (machines without omarchy-zsh, e.g. macOS)
+# ---------------------------------------------------------------------------
+# Stands in for the Omarchy base: completion, history, fzf widgets, plugins.
+# nvm is initialised below, so the omz nvm plugin is left out. The prompt
+# comes from oh-my-posh (end of file), hence the empty ZSH_THEME.
+if [[ ! -f /usr/share/omarchy-zsh/shell/all && -r "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]]; then
+  export ZSH="$HOME/.oh-my-zsh"
+  export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5ab8c8,bg=ffffff,bold,underline"
+  export DISABLE_MAGIC_FUNCTIONS=true
+  ZSH_THEME="minimal"
+  plugins=(fzf fzf-tab zsh-autosuggestions history zsh-syntax-highlighting git)
+  source "$ZSH/oh-my-zsh.sh"
+fi
 
 # ---------------------------------------------------------------------------
 # Key bindings
@@ -114,6 +129,11 @@ unset _f
 [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Prompt for the oh-my-zsh base (Omarchy sets its own via starship).
+#[[ -n $ZSH && -r "$HOME/.config/oh-my-posh/my-theme.json" ]] &&
+#  command -v oh-my-posh &>/dev/null &&
+#  eval "$(oh-my-posh init zsh --config "$HOME/.config/oh-my-posh/my-theme.json")"
+
 sbx() {
   if [[ "$1 $2" == "run claude" && $# -eq 2 ]]; then
     local name="claude-${PWD:t}"
@@ -129,7 +149,7 @@ sbx() {
 
 # >>> LazyDB installer >>>
 case ":$PATH:" in
-    *:/home/cherry/.local/bin:*) ;;
-    *) export PATH=/home/cherry/.local/bin:"$PATH" ;;
+    *:/Users/cherry/.local/bin:*) ;;
+    *) export PATH=/Users/cherry/.local/bin:"$PATH" ;;
 esac
 # <<< LazyDB installer <<<

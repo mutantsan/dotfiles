@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# SketchyBar config written in Lua (SbarLua), adapted from
+# https://github.com/hajiboy95/dotfiles (MIT, see LICENSE) for AeroSpace.
+#
+# The bar runs on SbarLua's own Lua 5.5 interpreter: the module links
+# that Lua version, so it must not be loaded from a different one.
+# Both are built once into ~/.local/share/sketchybar_lua from a pinned
+# upstream commit.
+
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
+
+SBARLUA_DIR="$HOME/.local/share/sketchybar_lua"
+SBARLUA_COMMIT="dba9cc421b868c918d5c23c408544a28aadf2f2f"
+
+if [ ! -x "$SBARLUA_DIR/lua" ] || [ ! -f "$SBARLUA_DIR/sketchybar.so" ]; then
+  build_dir="$(mktemp -d)"
+  git clone https://github.com/FelixKratz/SbarLua.git "$build_dir/SbarLua" \
+    && cd "$build_dir/SbarLua" \
+    && git checkout "$SBARLUA_COMMIT" \
+    && make install \
+    && cp lua-5.5.0/src/lua "$SBARLUA_DIR/lua"
+  rm -rf "$build_dir"
+fi
+
+cd "${CONFIG_DIR:-$(dirname "$0")}" && exec "$SBARLUA_DIR/lua" main.lua
