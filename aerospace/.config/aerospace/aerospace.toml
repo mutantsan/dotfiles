@@ -154,7 +154,7 @@ gaps.outer.right =      10
     # New terminal window on the current workspace
     alt-enter = 'exec-and-forget ~/.config/aerospace/new-terminal.sh'
     alt-f = 'fullscreen'
-    alt-e = 'exec-and-forget open .'
+    alt-e = "exec-and-forget osascript -e 'tell application \"Finder\" to make new Finder window to home' -e 'tell application \"Finder\" to activate'"
     alt-w = 'close --quit-if-last-window'
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
