@@ -6,11 +6,7 @@ after-startup-command = [
     'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=8.0'
 ]
 
-# Start AeroSpace at login
 start-at-login = true
-
-# Automatically reload the config when the config file is saved
-# After setting this to true, reload once manually to start the auto-reloading
 auto-reload-config = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
@@ -124,12 +120,30 @@ gaps.outer.right =      10
     alt-5 = 'workspace 5'
     alt-t = 'workspace T'
 
+    # Toggle the terminal workspace, opening a terminal there if it has none
+    # (iTerm's own F1 hotkey must be off, it shows/hides every iTerm window)
+    f1 = '''exec-and-forget
+    if [ "$(aerospace list-workspaces --focused)" = T ]; then
+        aerospace workspace-back-and-forth
+    else
+        aerospace workspace T
+        if [ "$(aerospace list-windows --workspace T --app-bundle-id com.googlecode.iterm2 --count)" = 0 ]; then
+            if pgrep -xq iTerm2; then
+                osascript -e 'tell application "iTerm2" to create window with default profile'
+            else
+                open -a iTerm
+            fi
+        fi
+    fi
+    '''
+
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
     alt-shift-3 = 'move-node-to-workspace 3'
     alt-shift-4 = 'move-node-to-workspace 4'
     alt-shift-5 = 'move-node-to-workspace 5'
+    alt-shift-t = 'move-node-to-workspace T'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
@@ -137,9 +151,11 @@ gaps.outer.right =      10
     alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
     alt-shift-enter = 'exec-and-forget open -n "/Applications/Google Chrome.app"'
+    # New terminal window on the current workspace
+    alt-enter = 'exec-and-forget ~/.config/aerospace/new-terminal.sh'
     alt-f = 'fullscreen'
     alt-e = 'exec-and-forget open .'
-    alt-c = 'close --quit-if-last-window'
+    alt-w = 'close --quit-if-last-window'
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
 
@@ -159,6 +175,7 @@ gaps.outer.right =      10
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
 
+# Every terminal goes to T; alt-enter (new-terminal.sh) moves its window back to the current workspace
 [[on-window-detected]]
 if.app-id = 'com.googlecode.iterm2'
 run = 'move-node-to-workspace T'
