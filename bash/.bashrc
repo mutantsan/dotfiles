@@ -19,9 +19,7 @@ for _f in "$HOME/.config/bash/"*.sh; do
 done
 unset _f
 
-# pyenv + direnv (needed by initckan)
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv  >/dev/null && eval "$(pyenv init - bash)"
+# direnv (needed by initckan)
 command -v direnv >/dev/null && eval "$(direnv hook bash)"
 
 # Alt-C: fuzzy-cd into any directory under $HOME (not just from $PWD)

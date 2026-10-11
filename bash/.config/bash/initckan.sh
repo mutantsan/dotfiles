@@ -15,11 +15,14 @@ initckan() {
         return 1
     fi
 
-    if ! pyenv versions --bare | grep -Fxq "$python_version"; then
-        echo "\n❌ Python $python_version is not installed in pyenv."
-        echo "Run: 'pyenv install $python_version' or change the version."
-        echo "Available versions:"
-        pyenv versions
+    if ! command -v uv >/dev/null 2>&1; then
+        echo "\n❌ uv is not installed."
+        return 1
+    fi
+
+    # Downloads the interpreter if uv does not have it yet; a no-op otherwise.
+    if ! uv python install "$python_version"; then
+        echo "\n❌ uv could not provide Python $python_version."
         return 1
     fi
 
@@ -46,7 +49,10 @@ initckan() {
     echo "🔍 Solr core ${project_name} has been created"
 
     # creating .envrc for direnv
-    echo "layout pyenv $python_version" >.envrc
+    # The venv lives in .venv; .envrc recreates it if it goes missing.
+    echo "[[ -d .venv ]] || uv venv --seed --python $python_version" >.envrc
+    echo 'export VIRTUAL_ENV="$PWD/.venv"' >>.envrc
+    echo 'PATH_add "$VIRTUAL_ENV/bin"' >>.envrc
     echo 'export NODE_VERSIONS="$HOME/.nvm/versions/node"' >>.envrc
     echo 'export NODE_VERSION_PREFIX=v' >>.envrc
     echo 'export CKAN_INI=$PWD/config/ckan.ini' >>.envrc

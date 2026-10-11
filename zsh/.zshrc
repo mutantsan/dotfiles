@@ -57,8 +57,6 @@ zmodload zsh/terminfo
 # Personal environment
 # ---------------------------------------------------------------------------
 export GOPATH="$HOME/go"
-export PYENV_ROOT="$HOME/.pyenv"
-export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 export PLAYDATE_SDK_PATH="$HOME/.playdate-sdk"
 export MY_CONF_DIR="$HOME/dotfiles"        # used by initckan for templates/ckan.ini
 export GPG_TTY="$TTY"
@@ -77,7 +75,6 @@ export FZF_ALT_C_COMMAND="fd -t d --follow \
   -E .cargo \
   -E .nvm \
   -E .npm \
-  -E .pyenv \
   -E .ipython \
   -E .cache \
   -E .vscode \
@@ -88,7 +85,6 @@ export FZF_ALT_C_COMMAND="fd -t d --follow \
 
 # PATH — Omarchy already adds ~/.local/bin and mise shims.
 path=(
-  "$PYENV_ROOT/bin"
   "$HOME/.cargo/bin"
   "$GOPATH/bin"
   $path
@@ -99,10 +95,9 @@ typeset -U path                            # dedupe, keep first occurrence
 # ---------------------------------------------------------------------------
 # Personal tool init
 # ---------------------------------------------------------------------------
-# pyenv + nvm are kept alongside mise deliberately: the initckan workflow
-# needs `pyenv` and `$HOME/.nvm/versions/node`. They prepend their shims,
-# so python/node resolve to pyenv/nvm — same as the old bash setup.
-command -v pyenv  &>/dev/null && eval "$(pyenv init - zsh)"
+# nvm is kept alongside mise deliberately: the initckan workflow
+# needs `$HOME/.nvm/versions/node`. It prepends its shims,
+# so node resolves to nvm — same as the old bash setup.
 command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 command -v atuin  &>/dev/null && eval "$(atuin init zsh)"
 
