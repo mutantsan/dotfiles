@@ -7,7 +7,12 @@ alias ppub="rm -rf dist && python -m build && cd dist && twine upload * && cd ..
 alias cdate='date +%Y-%m-%d'
 alias explorer="explorer.exe ."
 alias ols='/usr/bin/ls -l'
-alias ls='lsd -l'
+# lsd where it's installed (Mac), eza otherwise (NixOS)
+if command -v lsd >/dev/null 2>&1; then
+    alias ls='lsd -l'
+elif command -v eza >/dev/null 2>&1; then
+    alias ls='eza -l'
+fi
 alias l='ls'
 alias ll='ls'
 alias la='ls -a'

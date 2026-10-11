@@ -137,7 +137,7 @@
     // -------------------------------
     // Workbench
     // -------------------------------
-    "workbench.colorTheme": "Ocean Green: Dark",
+    "workbench.colorTheme": "Nord",
     "workbench.experimental.modernUI": false,
     "workbench.startupEditor": "none",
     "workbench.sideBar.location": "right",
@@ -165,6 +165,7 @@
     "chat.titleBar.openInAgentsWindow.enabled": false,
     "chat.viewSessions.orientation": "stacked",
     "chat.titleBar.signIn.enabled": false,
+    "chat.disableAIFeatures": true,
 
     // -------------------------------
     // Custom UI Style (extension: custom-ui-style)
@@ -260,5 +261,7 @@
     "[yml]": {
         "editor.formatOnSave": false,
         "editor.autoIndent": "advanced"
-    }
+    },
+    "workbench.editor.editorActionsLocation": "hidden",
+    "workbench.openInAgents.enabled": false
 }

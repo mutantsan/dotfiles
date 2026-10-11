@@ -10,10 +10,14 @@
 
 {
    "$schema": "https://vicinae.com/schemas/config.json",
+   "pop_to_root_on_close": true,
    "theme": {
       "dark": {
-         "name": "tokyo-night-storm"
+         "name": "nord"
       }
+   },
+   "launcher_window": {
+      "rounding": 0
    },
    "providers": {
       "browser-extension": {
