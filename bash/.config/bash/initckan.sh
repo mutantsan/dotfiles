@@ -53,13 +53,20 @@ initckan() {
     echo "[[ -d .venv ]] || uv venv --seed --python $python_version" >.envrc
     echo 'export VIRTUAL_ENV="$PWD/.venv"' >>.envrc
     echo 'PATH_add "$VIRTUAL_ENV/bin"' >>.envrc
-    echo 'export NODE_VERSIONS="$HOME/.nvm/versions/node"' >>.envrc
-    echo 'export NODE_VERSION_PREFIX=v' >>.envrc
     echo 'export CKAN_INI=$PWD/config/ckan.ini' >>.envrc
     echo 'export SETUPTOOLS_ENABLE_FEATURES="legacy-editable"' >>.envrc
     echo 'export PYTHONBREAKPOINT="ipdb.set_trace"' >>.envrc
     echo 'export CDM_USE_UV=1' >>.envrc
-    echo "use node 24" >>.envrc
+    # Node 24: from fnm where it's installed (NixOS), nvm otherwise. direnv's
+    # `use node` can't read fnm's layout, so there the bin dir is added directly.
+    if command -v fnm >/dev/null 2>&1; then
+        fnm exec --using=24 true >/dev/null 2>&1 || fnm install 24
+        echo 'PATH_add "$(dirname "$(fnm exec --using=24 node -p process.execPath)")"' >>.envrc
+    else
+        echo 'export NODE_VERSIONS="$HOME/.nvm/versions/node"' >>.envrc
+        echo 'export NODE_VERSION_PREFIX=v' >>.envrc
+        echo "use node 24" >>.envrc
+    fi
     echo "unset PS1" >>.envrc
 
     echo "✅ CKAN project '$project_name' initialized with Python $python_version\n"
