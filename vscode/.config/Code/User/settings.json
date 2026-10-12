@@ -133,11 +133,6 @@
     "window.controlsStyle": "hidden",
     "window.commandCenter": false,
     "window.menuBarVisibility": "compact",
-
-    // -------------------------------
-    // Workbench
-    // -------------------------------
-    "workbench.colorTheme": "Nord",
     "workbench.experimental.modernUI": false,
     "workbench.startupEditor": "none",
     "workbench.sideBar.location": "right",
@@ -263,5 +258,7 @@
         "editor.autoIndent": "advanced"
     },
     "workbench.editor.editorActionsLocation": "hidden",
-    "workbench.openInAgents.enabled": false
+    "workbench.openInAgents.enabled": false,
+    "scm.repositories.selectionMode": "single",
+    "workbench.colorTheme": "Nord"
 }
