@@ -1,4 +1,5 @@
---theme="Coldark-Cold"
+--theme-dark="Nord"
+--theme-light="Coldark-Cold"
 --paging=auto
 --wrap=character
 --tabs=4
