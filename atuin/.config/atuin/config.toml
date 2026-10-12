@@ -2,6 +2,7 @@
 history_filter = [
   "^cd$",
   "^cd \\.\\.$",
+  "^builtin cd ",
   "^pwd$",
 
   "^ls$",
