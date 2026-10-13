@@ -34,7 +34,7 @@ search_mode = "fuzzy"
 style = "full"
 
 [theme]
-name = "everforest"
+name = "noctalia"
 
 [search]
 filters = [ "global", "session", "workspace", "directory" ]

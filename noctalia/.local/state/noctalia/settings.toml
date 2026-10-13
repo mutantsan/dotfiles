@@ -96,6 +96,10 @@ mode = "dark"
 source = "builtin"
 wallpaper_scheme = "m3-content"
 
+    [theme.templates]
+    builtin_ids = [ "btop", "gtk3", "gtk4", "ghostty", "qt" ]
+    community_ids = [ "obs", "bat", "fzf" ]
+
 [wallpaper.default]
 path = "/home/kiwi/Pictures/602575.png"
 

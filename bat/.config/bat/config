@@ -4,3 +4,4 @@
 --wrap=character
 --tabs=4
 --style="numbers,changes,grid"
+--theme=noctalia
