@@ -79,6 +79,9 @@ card_borders = false
 corner_radius_scale = 0.0
 
     [shell.launcher]
+    categories = false
+    compact = true
+    show_app_origin_indicator = false
     show_icons = false
 
 [theme]
