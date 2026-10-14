@@ -12,7 +12,7 @@ margin_ends = 0
 padding = 20
 radius = 0
 scale = 1.350000012665987
-start = [ "workspaces", "sysmon", "recorder" ]
+start = [ "workspaces", "sysmon", "recorder", "nix-monitor" ]
 widget_spacing = 13
 
 [calendar]
@@ -61,11 +61,16 @@ widget_order = [ "lockscreen-login-box@DP-1" ]
         show_unlock_hint = true
         show_weather = true
 
+[plugin_settings."avivbintangaringga/nix-monitor"]
+branch = "nixos-26.05"
+clean_command = "sudo nix-collect-garbage --delete-older-than 14d"
+update_command = "nix flake update --flake /home/kiwi/nixos-config && sudo nixos-rebuild switch --flake /home/kiwi/nixos-config"
+
 [plugin_settings."noctalia/screen_recorder"]
 video_source = "region"
 
 [plugins]
-enabled = [ "noctalia/screen_recorder" ]
+enabled = [ "noctalia/screen_recorder", "avivbintangaringga/nix-monitor" ]
 
 [shell]
 avatar_path = "/home/kiwi/Downloads/avatar.png"
@@ -106,6 +111,11 @@ show_glyph = false
 
 [widget.network]
 show_label = false
+
+[widget.nix-monitor]
+colorize_glyph = false
+show_text = false
+type = "avivbintangaringga/nix-monitor:nix-monitor"
 
 [widget.recorder]
 type = "noctalia/screen_recorder:recorder"
