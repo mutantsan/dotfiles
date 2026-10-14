@@ -119,3 +119,4 @@ style = "fg:#2e3440 bg:#d9dee9"
 success_symbol = "[ 󱞩](bold green)"
 error_symbol = "[ 󱞩](bold red)"
 vimcmd_symbol = "[  󱞩](bold green)"
+

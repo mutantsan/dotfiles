@@ -260,5 +260,6 @@
     "workbench.editor.editorActionsLocation": "hidden",
     "workbench.openInAgents.enabled": false,
     "scm.repositories.selectionMode": "single",
+    "workbench.colorTheme": "Noctalia",
     "explorer.confirmPasteNative": false
 }
